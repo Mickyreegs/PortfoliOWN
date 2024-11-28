@@ -1,0 +1,37 @@
+body{
+    background: silver;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+
+#stock-options{
+    background: lightskyblue;
+    order: 1;
+    width: 50%;
+    height: 50vh;
+    
+}
+
+#portfolio{
+    background: gray;
+    order: 2;
+    width: 50%;
+    height: 50vh;
+}
+
+#daily-valuation{
+    background: orange;
+    order: 3;
+    width: 50%;
+    height: 50vh;
+}
+
+#return-on-investment{
+    background: red;
+    order: 4;
+    width: 50%;
+    height: 50vh;
+}
