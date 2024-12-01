@@ -5,18 +5,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
     for(let button of buttons){
         button.addEventListener("click", function() {
-            if (this.getAttribute("data-type") === "submit") {
-                checkAnswer();
-            } else{
-                let gameType = this.getAttribute("data-type");
-                runGame(gameType);
+            if (this.getAttribute("data-type") === "buy") {
+                calculatePurchases();
+            } else if (this.getAttribute("data-type") === "sell") {
+                    calculateSales();
+                else if(this.getAttribute("data-type") === "proceed")
+                    adjustPortfolio();
             }
         })
     }
 
     document.getElementById("answer-box").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
-            checkAnswer();
+            adjustPortfolio();
         }
     })
 

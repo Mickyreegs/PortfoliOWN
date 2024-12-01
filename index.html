@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/CSS/style.css">
     <title>PortfoliOWN</title>
 </head>
+
 <body>
 
     <section id="stock-options">
@@ -134,20 +136,19 @@
     </section>
 
     <section id="portfolio">
-        <h1>Build Your Portfolio</h1>
+        <h1>Build/Edit Your Portfolio</h1>
         <div id="cash">
             <p>Cash For Investment <span id="remaining-cash">5000</span></p>
         </div>
         <div>
             <div>
-                <h3>Select:</h3>
-                <label for="stock"></label>
+                <label for="stock">Select A Stock:</label>
                 <select name="stock" id="stock">
                     <option value="" selected>Please Select:</option>
                     <option value="goog">Alphabet Inc.</option>
                     <option value="aapl">Apple Inc.</option>
                     <option value="bac">Bank of America Corporation</option>
-                    <option value="blk">BlackRock Inc.</option> 
+                    <option value="blk">BlackRock Inc.</option>
                     <option value="ea">Electronic Arts Inc.</option>
                     <option value="meta">Meta Platforms, Inc.</option>
                     <option value="msft">Microsoft Corporation</option>
@@ -155,12 +156,20 @@
                     <option value="pfe">Pfizer Inc.</option>
                     <option value="bk">The Bank of New York Mellon Corporation</option>
                 </select>
+                <label for="quantity">Quantity:</label>
+                <input name="quantity" type="number" placeholder="Insert Quantity">
+                <button data-type="buy">Buy</button>
+                <button data-type="sell">Sell</button>
             </div>
-            <P>Quantity: <span>0</span></P>
-            <button id="buy">Buy</button>
-            <button id="sell">Sell</button>       
+
+            <div>
+                <p class="cash-value">Total Cost: <span>0</span></p>
+                <p class="cash value">Total Proceeds: <span>0</span></p>
+            </div>
+
+            <button data-type="proceed">Proceed With Trade(s)</button>
         </div>
-        
+
     </section>
 
     <section id="daily-valuation">
@@ -182,4 +191,5 @@
 </body>
 
 <footer></footer>
+
 </html>
