@@ -142,7 +142,7 @@
         </div>
         <div>
             <div>
-                <label for="stock">Select A Stock:</label>
+                <label for="stock">Select a stock:</label>
                 <select name="stock" id="stock">
                     <option value="" selected>Please Select:</option>
                     <option value="goog">Alphabet Inc.</option>
@@ -158,13 +158,15 @@
                 </select>
                 <label for="quantity">Quantity:</label>
                 <input name="quantity" type="number" placeholder="Insert Quantity">
+                <p>Price: <span id="price">0</span></p>
                 <button data-type="buy">Buy</button>
                 <button data-type="sell">Sell</button>
+                
             </div>
 
             <div>
-                <p class="cash-value">Total Cost: <span>0</span></p>
-                <p class="cash value">Total Proceeds: <span>0</span></p>
+                <p class="cash-value">Total Cost: <span id="total-cost">0</span></p>
+                <p class="cash value">Total Proceeds: <span id="total-proceeds">0</span></p>
             </div>
 
             <button data-type="proceed">Proceed With Trade(s)</button>
@@ -174,16 +176,13 @@
 
     <section id="daily-valuation">
         <h1>Portfolio Valuation</h1>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div id="holdings"></div>
+        
     </section>
 
     <section id="return-on-investment">
         <h1>Rate Of Return</h1>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div id="ror"></div>
     </section>
 
     <script src="assets/JS/script.js"></script>
