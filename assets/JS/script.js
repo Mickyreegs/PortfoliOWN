@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     calculateProceeds();
              } else if(this.getAttribute("data-type") === "proceed") {
                     adjustPortfolio();
-            } else{
+            } else if(this.getAttribute("data-type") === "increment") {
+                incrementDayCount();
+            }   else{
                 alert(`Unknown command`);
                 throw `Unknown command: Aborting!`;
             }
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     calculateCosts("buy");
     calculateProceeds("sell");
     adjustPortfolio("proceed");
+    incrementDayCount("increment");
 })
 
 function buildTableData() {
@@ -65,11 +68,15 @@ function adjustCashOnHand() {
 
 }
 
+function incrementDayCount() {
+
+}
+
 function updatePrices() {
 
 }
 
-function adjustDayCount() {
+function CalculateUnrealisedGainLoss() {
 
 }
 
