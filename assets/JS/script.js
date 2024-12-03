@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
     let stock = document.getElementById("stock");
 
+
     for(let button of buttons){
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "buy") {
@@ -22,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function() {
             } 
         })
     }
+
+    stock.addEventListener("change", function() {
+        findPrice()
+    })
 
     calculateCost("buy");
     calculateProceeds("sell");
@@ -57,7 +62,8 @@ console.log(data);
  * Finds the latest price for stock transactions and valuation
  */
 function findPrice() {
-    
+    let price = parseInt(getElementById("price").innerText = companies[2].innerText);
+    return[price]
 }
 
 /**
