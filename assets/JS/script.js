@@ -19,11 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
-    stock.addEventListener("click",function() {
-        if(this.value === company.ticker[1])
-            return[company.price]
-    })
-
     calculateCosts("buy");
     calculateProceeds("sell");
     adjustPortfolio("proceed");
@@ -50,22 +45,12 @@ let data = buildTableData();
 console.log(data);
 
 
-function displayPrice() {
-    if (getElementById('stock').textContent === companies[0]);
-    return[companies[2]]
+function findPrice() {
+    
 }
 
 function calculateCost() {
-    let stockToPurchase = document.getElementById('stock').innerText;
-    let purchasePrice = parseInt(company.price).innerText;
-    let quantity = parseInt(document.getElementById('quantity').innerText)
 
-    if (stockToPurchase === company.name) {
-        return[purchasePrice * quantity]
-    } else {
-        alert(`Try Again`);
-        throw `unimplemented. Aborting!`;
-    }
 }
 
 function calculateProceeds() {
@@ -76,6 +61,23 @@ function adjustPortfolio() {
 
 }
 
-function findPrice() {
-    
+function adjustCashOnHand() {
+
 }
+
+function updatePrices() {
+
+}
+
+function adjustDayCount() {
+
+}
+
+function CalculateRealisedGainLoss() {
+
+}
+
+function CalculateRateOfReturn() {
+
+}
+
