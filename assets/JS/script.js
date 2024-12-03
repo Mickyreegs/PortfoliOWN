@@ -10,21 +10,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 calculateCost();
             } else if (this.getAttribute("data-type") === "sell") {
                     calculateProceeds();
-             } else if(this.getAttribute("data-type") === "proceed") {
+            } else if(this.getAttribute("data-type") === "proceed") {
                     adjustPortfolio();
             } else if(this.getAttribute("data-type") === "increment") {
                 incrementDayCount();
-            }   else{
-                alert(`Unknown command`);
-                throw `Unknown command: Aborting!`;
-            }
+            } else if(this.getAttribute("data-type") === "reset") {
+                reset();
+            } else{
+              alert(`Unknown command`);
+              throw `Unknown command: Aborting!`;
+            } 
         })
     }
 
-    calculateCosts("buy");
+    calculateCost("buy");
     calculateProceeds("sell");
     adjustPortfolio("proceed");
     incrementDayCount("increment");
+    reset("reset");
 })
 
 /**
@@ -89,7 +92,8 @@ function adjustCashOnHand() {
  * Increases day count by 1 for every click of the button
  */
 function incrementDayCount() {
-
+    let oldDayCount = parseInt(document.getElementById("day-count").innerText);
+    document.getElementById("day-count").innerText = ++oldDayCount;
 }
 
 /**
@@ -117,6 +121,13 @@ function CalculateRealisedGainLoss() {
  * Calculates the rate of return per day incremented in %
  */
 function CalculateRateOfReturn() {
+
+}
+
+/**
+ * Resets day count to 0, reinstates original table, resets budget, removes everything from portfolio and rate of return sections
+ */
+function reset() {
 
 }
 
