@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function() {
     incrementDayCount("increment");
 })
 
+/**
+ * Iterates through the table to get usable stock data for functions
+ */
 function buildTableData() {
     let tbody = document.getElementsByTagName('tbody')[0];
     let rows = tbody.children;
@@ -47,43 +50,72 @@ function buildTableData() {
 let data = buildTableData();
 console.log(data);
 
-
+/**
+ * Finds the latest price for stock transactions and valuation
+ */
 function findPrice() {
     
 }
 
+/**
+ * Calculates the purchase cost per stock
+ */
 function calculateCost() {
 
 }
 
+/**
+ * Calculates the sale proceeds per stock
+ */
 function calculateProceeds() {
 
 }
 
+/**
+ * Pushes purchases/removes sales from the portfolio array
+ */
 function adjustPortfolio() {
 
 }
 
+/**
+ * Updates the cash balance after purchases and sales are processed
+ */
 function adjustCashOnHand() {
 
 }
 
+/**
+ * Increases day count by 1 for every click of the button
+ */
 function incrementDayCount() {
 
 }
 
+/**
+ * Updates the stock prices by +/- 5 once incrementDayCount function is called
+ */
 function updatePrices() {
 
 }
 
+/**
+ * Calculates the unrealised gain/loss when the updated prices are reflected for every day incremented
+ */
 function CalculateUnrealisedGainLoss() {
 
 }
 
+/**
+ * Calculates total profit/loss when a security is sold
+ */
 function CalculateRealisedGainLoss() {
 
 }
 
+/**
+ * Calculates the rate of return per day incremented in %
+ */
 function CalculateRateOfReturn() {
 
 }
