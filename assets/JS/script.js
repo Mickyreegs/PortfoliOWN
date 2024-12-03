@@ -128,6 +128,7 @@ function CalculateRateOfReturn() {
  * Resets day count to 0, reinstates original table, resets budget, removes everything from portfolio and rate of return sections
  */
 function reset() {
-
+    let resetDayCount = parseInt(document.getElementById("day-count").innerText = 0);
+    return[resetDayCount]
 }
 
