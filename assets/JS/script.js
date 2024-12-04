@@ -24,8 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
-    stock.addEventListener("change", function() {
-        findPrice()
+    stock.addEventListener("onChange", function() {
+        if (this.getAttribute("data-type") === "stock") {
+            buildDropdownList();}
     })
 
     calculateCost("buy");
@@ -41,22 +42,36 @@ document.addEventListener("DOMContentLoaded", function() {
 function buildTableData() {
     let tbody = document.getElementsByTagName('tbody')[0];
     let rows = tbody.children;
-    let companies = []
+    stock = []
 
     for (let row of rows) {
-        let company = {};
+        let stocks = {};
     
         let cells = row.children;
-        company.name = cells[0].textContent;
-        company.ticker = cells[1].textContent;
-        company.price = cells[2].textContent;
-        companies.push(company);
+        stocks.name = cells[0].textContent;
+        stocks.ticker = cells[1].textContent;
+        stocks.price = cells[2].textContent;
+        stock.push(stocks);
     }
 
-   return companies;
+   return stock;
 }
 let data = buildTableData();
 console.log(data);
+
+function buildDropdownList() {
+    let stockList = document.getElementById("stock");
+    for (let i = 0; i < stock.length; i++) {
+        let newOption = document.createElement("option");
+        newOption.innerHTML = stock[i];
+        stockList.appendChild(newOption)
+    }
+    return stockList;
+}
+let dataDos = buildDropdownList();
+console.log(dataDos);
+
+
 
 /**
  * Finds the latest price for stock transactions and valuation

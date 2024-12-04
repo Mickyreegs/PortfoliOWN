@@ -133,6 +133,10 @@
                 </tr>
             </tbody>
         </table>
+
+        <div>
+            <button data-type="reset">Reset Game</button>
+        </div>
     </section>
 
     <section id="portfolio">
@@ -143,25 +147,17 @@
         <div>
             <div>
                 <label for="stock">Select a stock:</label>
-                <select name="stock" id="stock">
+                <select name="stock" data-type="stock" id="stock">
                     <option value="" selected>Please Select:</option>
-                    <option value="goog">Alphabet Inc.</option>
-                    <option value="aapl">Apple Inc.</option>
-                    <option value="bac">Bank of America Corporation</option>
-                    <option value="blk">BlackRock Inc.</option>
-                    <option value="ea">Electronic Arts Inc.</option>
-                    <option value="meta">Meta Platforms, Inc.</option>
-                    <option value="msft">Microsoft Corporation</option>
-                    <option value="nvs">Novartis AG</option>
-                    <option value="pfe">Pfizer Inc.</option>
-                    <option value="bk">The Bank of New York Mellon Corporation</option>
                 </select>
+                
+                <p>Price: <span id="price">0</span></p>
+                
                 <label for="quantity">Quantity:</label>
                 <input name="quantity" type="number" placeholder="Insert Quantity">
-                <p>Price: <span id="price">0</span></p>
+
                 <button data-type="buy">Buy</button>
                 <button data-type="sell">Sell</button>
-                
             </div>
 
             <div>
@@ -170,11 +166,6 @@
             </div>
 
             <button data-type="proceed">Proceed With Trade(s)</button>
-
-            <div>
-                <button data-type="reset">Reset Game</button>
-            </div>
-            
         </div>
 
     </section>
@@ -186,7 +177,7 @@
             <p>Day Count <span id="day-count">0</span></p>
             <button data-type="increment">Update Day Count</button>
         </div>
-        
+
     </section>
 
     <section id="return-on-investment">
