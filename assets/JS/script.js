@@ -2,7 +2,7 @@
 // Get the button elements and add event listeners to them
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
-    let stock = document.getElementById("stock");
+    let stockSelect = document.getElementById("stock-select");
 
 
     for(let button of buttons){
@@ -24,9 +24,10 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
-    stock.addEventListener("onChange", function() {
-        if (this.getAttribute("data-type") === "stock") {
-            buildDropdownList();}
+    stockSelect.addEventListener("onChange", function() {
+        if (this.getAttribute("data-type") === "stock-select") {
+            stockSelectList();
+        }
     })
 
     calculateCost("buy");
@@ -37,42 +38,121 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 /**
- * Iterates through the table to get usable stock data for functions
+ * Build stock list for HTML div with ID "stock"
  */
-function buildTableData() {
-    let tbody = document.getElementsByTagName('tbody')[0];
-    let rows = tbody.children;
-    stock = []
 
-    for (let row of rows) {
-        let stocks = {};
+let stocks = [
+    {
+        name: 'Apple Inc.',
+        ticker: 'AAPL',
+        price:  200
+
+    },
+    {
+        name: 'Alphabet Inc.',
+        ticker: 'GOOG',
+        price:  150
+  
+    },
+    {
+        name: 'Microsoft Corporation',
+        ticker: 'MSFT',
+        price:  250
+  
+    },
+    {
+        name: 'Meta Platforms, Inc.',
+        ticker: 'META',
+        price:  300
+  
+    },
+    {
+        name: 'The Bank of New York Mellon Corporation',
+        ticker: 'BK',
+        price:  100
+  
+    },
+    {
+        name: 'BlackRock Inc.',
+        ticker: 'BLK',
+        price:  1000
+  
+    },
+    {
+        name: 'Bank of America Corporation',
+        ticker: 'BAC',
+        price:  50
+  
+    },
+    {
+        name: 'Pfizer Inc.',
+        ticker: 'PFE',
+        price:  30
+  
+    },
+    {
+        name: 'Novartis AG',
+        ticker: 'NVS',
+        price:  106
+  
+    },
+    {
+        name: 'Electronic Arts Inc.',
+        ticker: 'EA',
+        price:  165
+  
+    },
+  ];
+  
+  let html = `
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Ticker</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+  
+  for (stock of stocks) {
+    let rowHtml = `
+      <tr class="stock-row">
+        <td>${stock.name}</td>
+        <td>${stock.ticker}</td>
+        <td>${stock.price}</td>
+      </tr>
+    `;
+    html += rowHtml;  
+  }
+  html += `
+    </tbody>
+  </table>
+  `;
+  
+  document.getElementById("table").innerHTML = html;
+  
+/**
+ * Select stocks from the dropdown by iterating through the objects list
+ * https://stackoverflow.com/questions/55627529/how-to-get-html-table-data-into-selected-options-via-the-the-javascript-at-run-t
+ */
+
+function stockSelectList() {
+      var stockSelect = document.getElementById("stock-select"); // selecting Name select
+      var table = document.getElementsByClassName('stock-row'); // selecting Table
+      
+
+      for (var i = 0, row; row = table.rows[i]; i++) {
+
+        if (i === 0) { continue; } //for skipping headings
+
+        var optionName = document.createElement("option");
+        optionName.text = row.cells[0].innerHTML;
+        stockSelect.add(optionName) // adding Name option
+    }}
+
     
-        let cells = row.children;
-        stocks.name = cells[0].textContent;
-        stocks.ticker = cells[1].textContent;
-        stocks.price = cells[2].textContent;
-        stock.push(stocks);
-    }
-
-   return stock;
-}
-let data = buildTableData();
-console.log(data);
-
-function buildDropdownList() {
-    let stockList = document.getElementById("stock");
-    for (let i = 0; i < stock.length; i++) {
-        let companies = Object.values(stock);
-        let newOption = document.createElement("option");
-        newOption.innerHTML = object[values];
-        stockList.appendChild(newOption)
-    }
-    return stockList;
-}
-let dataDos = buildDropdownList();
-console.log(dataDos);
-
-
 
 /**
  * Finds the latest price for stock transactions and valuation
