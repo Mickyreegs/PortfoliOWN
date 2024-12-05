@@ -147,11 +147,10 @@ const values = Object.values(stocks);
 function stockSelectList() {
     const values = Object.values(stocks);
     values.forEach(value => {
-        for (let i=0; i < values.length; i++){
             let option = document.createElement("option");
-            option.innerHTML=value.name[i];
+            option.innerHTML=value.name;
             stockSelect.appendChild(option)
-        }
+        
     });   
 
 }
