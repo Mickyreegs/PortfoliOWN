@@ -138,19 +138,22 @@ let stocks = [
  * https://stackoverflow.com/questions/55627529/how-to-get-html-table-data-into-selected-options-via-the-the-javascript-at-run-t
  */
 
+const values = Object.values(stocks);
+    values.forEach(value => {
+        console.log(value.name);
+    }); 
+
 function stockSelectList() {
-      var stockSelect = document.getElementById("stock-select"); // selecting Name select
-      var table = document.getElementsByClassName('stock-row'); // selecting Table
-      
+    const values = Object.values(stocks);
+    values.forEach(value => {
+        for (let i=0; i < values.length; i++){
+            let option = document.createElement("option");
+            option.innerHTML=value.name[i];
+            stockSelect.appendChild(option)
+        }
+    });   
 
-      for (var i = 0, row; row = table.rows[i]; i++) {
-
-        if (i === 0) { continue; } //for skipping headings
-
-        var optionName = document.createElement("option");
-        optionName.text = row.cells[0].innerHTML;
-        stockSelect.add(optionName) // adding Name option
-    }}
+}
 
     
 
@@ -158,8 +161,7 @@ function stockSelectList() {
  * Finds the latest price for stock transactions and valuation
  */
 function findPrice() {
-    let price = parseInt(getElementById("price").innerText = companies[2].innerText);
-    return[price]
+    
 }
 
 /**
