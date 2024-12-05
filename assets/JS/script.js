@@ -62,8 +62,9 @@ console.log(data);
 function buildDropdownList() {
     let stockList = document.getElementById("stock");
     for (let i = 0; i < stock.length; i++) {
+        let companies = Object.values(stock);
         let newOption = document.createElement("option");
-        newOption.innerHTML = stock[i];
+        newOption.innerHTML = object[values];
         stockList.appendChild(newOption)
     }
     return stockList;
@@ -85,7 +86,7 @@ function findPrice() {
  * Calculates the purchase cost per stock
  */
 function calculateCost() {
-
+    
 }
 
 /**
@@ -119,9 +120,15 @@ function incrementDayCount() {
 
 /**
  * Updates the stock prices by +/- 5 once incrementDayCount function is called
+ * Found on https://stackoverflow.com/questions/8597731/are-there-known-techniques-to-generate-realistic-looking-fake-stock-data
  */
 function updatePrices() {
-
+    rnd = Random_Float(); // generate number, 0 <= x < 1.0
+    change_percent = 2 * volatility * rnd;
+    if (change_percent > volatility)
+        change_percent -= (2 * volatility);
+    change_amount = old_price * change_percent;
+    new_price = old_price + change_amount;
 }
 
 /**
