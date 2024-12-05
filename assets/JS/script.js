@@ -136,6 +136,7 @@ let stocks = [
 /**
  * Select stocks from the dropdown by iterating through the objects list
  * https://stackoverflow.com/questions/55627529/how-to-get-html-table-data-into-selected-options-via-the-the-javascript-at-run-t
+ * https://dev.to/fpaghar/object-iteration-ways-in-javascript-pej#:~:text=entries()%3A-,Object.,%2C%20c%3A%203%20%7D%3B%20Object.
  */
 
 const values = Object.values(stocks);
