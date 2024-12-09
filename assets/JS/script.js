@@ -11,14 +11,30 @@ const initialStocks = [
     { name: "Pfizer Inc.", ticker: "PFE", price: 30 },
     { name: "Novartis AG", ticker: "NVS", price: 106 },
     { name: "Electronic Arts Inc.", ticker: "EA", price: 165 },
-  ];
+];
  
-  //Initial values at the beginning of the game
-  const defaultQuantity = 1;
-  const initialCashOnHand = 5000;
-  const initialDayCount = 0;
+//Set Initial values at the beginning of the game and create the stock table
+const defaultQuantity = 1;
+const initialCashOnHand = 5000;
+const initialDayCount = 0;
 
+let myHoldings;
+let totalProceeds;
+let totalProceedsProfit;
+let cashOnHand;
+let stocks
+
+function initValues() {
+  myHoldings = {}
+  totalProceeds = 0;
+  totalProceedsProfit = 0;
+  cashOnHand = initialCashOnHand;
+  stocks = initialStocks.map((stock) => ({...stock}));
+}
   
+initValues();
+
+function populateStockTable() {
   let html = `
     <table>
       <thead>
@@ -31,23 +47,25 @@ const initialStocks = [
       <tbody>
   `;
   
-  for (stock of stocks) {
-    let rowHtml = `
+  for (const stock of stocks) {
+    html += `
       <tr class="stock-row">
         <td>${stock.name}</td>
         <td>${stock.ticker}</td>
         <td>${stock.price}</td>
       </tr>
     `;
-    html += rowHtml;  
   }
+
   html += `
     </tbody>
   </table>
   `;
   
-  document.getElementById("table").innerHTML = html;
+  document.getElementById("stock-table").innerHTML = html;
+}
 
+populateStockTable();
 
 // Get the button elements and add event listeners to them
 document.addEventListener("DOMContentLoaded", function() {

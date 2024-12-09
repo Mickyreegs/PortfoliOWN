@@ -13,9 +13,10 @@
     <section id="stock-options">
         <h1>Stock Selection</h1>
 
-        <div id="table"></div>
+        <div id="stock-table"></div>
 
         <div>
+            <button data-type="update-prices">Update Day Count</button>
             <button data-type="reset">Reset Game</button>
         </div>
     </section>
@@ -23,7 +24,7 @@
     <section id="portfolio">
         <h1>Build/Edit Your Portfolio</h1>
         <div id="cash">
-            <p>Cash For Investment <input name="cash-on-hand" type="number" placeholder="5000"></p>
+            <p>Cash For Investment <span id="cash-on-hand"></span></p>
         </div>
         <div>
             <div>
@@ -32,31 +33,30 @@
                     <option value="" selected>Please Select:</option>
                 </select>
                 
-                <p>Price: <span id="price">0</span></p>
+                <p>Price: <span id="price"></span></p>
                 
                 <label for="quantity">Quantity:</label>
-                <input name="quantity" type="number" placeholder="Insert Quantity">
-
-                <button data-type="buy">Buy</button>
-                <button data-type="sell">Sell</button>
+                <input id="quantity" name="quantity" type="number" placeholder="Insert Quantity" min="1" value="1">                
             </div>
 
             <div>
-                <p class="cash-value">Total Cost: <span id="total-cost">0</span></p>
-                <p class="cash value">Total Proceeds: <span id="total-proceeds">0</span></p>
+                <p class="cash-value">Total Cost: <span id="total-cost"></span></p>
+                <p class="cash value">Total Proceeds: <span id="total-proceeds"></span></p>
             </div>
 
-            <button data-type="proceed">Proceed With Trade(s)</button>
+            <button id="proceed-button" data-type="proceed">Proceed With Trade(s)</button>
         </div>
 
     </section>
 
     <section id="daily-valuation">
         <h1>Portfolio Valuation</h1>
-        <div id="holdings"></div>
+        <div id="my-holdings"></div>
         <div id="daily-update">
-            <p>Day Count <span id="day-count">0</span></p>
-            <button data-type="increment">Update Day Count</button>
+            <p class="cash value">Total Proceeds: <span id="total-proceeds"></span></p>
+            <p class="cash-value">Total Profits: <span id="total-proceed-profit"></span></p>
+            <p>Day Count <span id="day-count">1</span></p>
+            <button id="sell-button" data-type="sell">Sell Stock</button>
         </div>
 
     </section>
