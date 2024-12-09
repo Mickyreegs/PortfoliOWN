@@ -25,13 +25,6 @@ body{
 #daily-valuation{
     background: orange;
     order: 3;
-    width: 50%;
-    height: 50vh;
-}
-
-#return-on-investment{
-    background: red;
-    order: 4;
-    width: 50%;
+    width: 100%;
     height: 50vh;
 }
