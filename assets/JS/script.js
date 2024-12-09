@@ -41,67 +41,17 @@ document.addEventListener("DOMContentLoaded", function() {
  * Build stock list for HTML div with ID "stock"
  */
 
-let stocks = [
-    {
-        name: 'Apple Inc.',
-        ticker: 'AAPL',
-        price:  200
-
-    },
-    {
-        name: 'Alphabet Inc.',
-        ticker: 'GOOG',
-        price:  150
-  
-    },
-    {
-        name: 'Microsoft Corporation',
-        ticker: 'MSFT',
-        price:  250
-  
-    },
-    {
-        name: 'Meta Platforms, Inc.',
-        ticker: 'META',
-        price:  300
-  
-    },
-    {
-        name: 'The Bank of New York Mellon Corporation',
-        ticker: 'BK',
-        price:  100
-  
-    },
-    {
-        name: 'BlackRock Inc.',
-        ticker: 'BLK',
-        price:  1000
-  
-    },
-    {
-        name: 'Bank of America Corporation',
-        ticker: 'BAC',
-        price:  50
-  
-    },
-    {
-        name: 'Pfizer Inc.',
-        ticker: 'PFE',
-        price:  30
-  
-    },
-    {
-        name: 'Novartis AG',
-        ticker: 'NVS',
-        price:  106
-  
-    },
-    {
-        name: 'Electronic Arts Inc.',
-        ticker: 'EA',
-        price:  165
-  
-    },
+const initialStocks = [
+    { name: "Apple Inc.", ticker: "AAPL", price: 200 },
+    { name: "Alphabet Inc.", ticker: "GOOG", price: 150 },
+    { name: "Microsoft Corporation", ticker: "MSFT", price: 250 },
+    { name: "Meta Platforms, Inc.", ticker: "META", price: 300 },
+    { name: "The Bank of New York Mellon Corporation", ticker: "BK", price: 100 },
+    { name: "BlackRock Inc.", ticker: "BLK", price: 1000 },
+    { name: "Bank of America Corporation", ticker: "BAC", price: 50 },
+    { name: "Pfizer Inc.", ticker: "PFE", price: 30 },
+    { name: "Novartis AG", ticker: "NVS", price: 106 },
+    { name: "Electronic Arts Inc.", ticker: "EA", price: 165 },
   ];
   
   let html = `
