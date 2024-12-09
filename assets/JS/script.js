@@ -1,4 +1,54 @@
 
+//Array of stocks at the start of the game and upon reset
+const initialStocks = [
+    { name: "Apple Inc.", ticker: "AAPL", price: 200 },
+    { name: "Alphabet Inc.", ticker: "GOOG", price: 150 },
+    { name: "Microsoft Corporation", ticker: "MSFT", price: 250 },
+    { name: "Meta Platforms, Inc.", ticker: "META", price: 300 },
+    { name: "The Bank of New York Mellon Corporation", ticker: "BK", price: 100 },
+    { name: "BlackRock Inc.", ticker: "BLK", price: 1000 },
+    { name: "Bank of America Corporation", ticker: "BAC", price: 50 },
+    { name: "Pfizer Inc.", ticker: "PFE", price: 30 },
+    { name: "Novartis AG", ticker: "NVS", price: 106 },
+    { name: "Electronic Arts Inc.", ticker: "EA", price: 165 },
+  ];
+ 
+  //Initial values at the beginning of the game
+  const defaultQuantity = 1;
+  const initialCashOnHand = 5000;
+  const initialDayCount = 0;
+
+  
+  let html = `
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Ticker</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+  
+  for (stock of stocks) {
+    let rowHtml = `
+      <tr class="stock-row">
+        <td>${stock.name}</td>
+        <td>${stock.ticker}</td>
+        <td>${stock.price}</td>
+      </tr>
+    `;
+    html += rowHtml;  
+  }
+  html += `
+    </tbody>
+  </table>
+  `;
+  
+  document.getElementById("table").innerHTML = html;
+
+
 // Get the button elements and add event listeners to them
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
@@ -41,47 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
  * Build stock list for HTML div with ID "stock"
  */
 
-const initialStocks = [
-    { name: "Apple Inc.", ticker: "AAPL", price: 200 },
-    { name: "Alphabet Inc.", ticker: "GOOG", price: 150 },
-    { name: "Microsoft Corporation", ticker: "MSFT", price: 250 },
-    { name: "Meta Platforms, Inc.", ticker: "META", price: 300 },
-    { name: "The Bank of New York Mellon Corporation", ticker: "BK", price: 100 },
-    { name: "BlackRock Inc.", ticker: "BLK", price: 1000 },
-    { name: "Bank of America Corporation", ticker: "BAC", price: 50 },
-    { name: "Pfizer Inc.", ticker: "PFE", price: 30 },
-    { name: "Novartis AG", ticker: "NVS", price: 106 },
-    { name: "Electronic Arts Inc.", ticker: "EA", price: 165 },
-  ];
-  
-  let html = `
-    <table>
-      <thead>
-        <tr>
-          <th>Company</th>
-          <th>Ticker</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-  `;
-  
-  for (stock of stocks) {
-    let rowHtml = `
-      <tr class="stock-row">
-        <td>${stock.name}</td>
-        <td>${stock.ticker}</td>
-        <td>${stock.price}</td>
-      </tr>
-    `;
-    html += rowHtml;  
-  }
-  html += `
-    </tbody>
-  </table>
-  `;
-  
-  document.getElementById("table").innerHTML = html;
+
   
 /**
  * Select stocks from the dropdown by iterating through the objects list
