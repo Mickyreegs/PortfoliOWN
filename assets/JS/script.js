@@ -103,8 +103,11 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
-    populateStockSelectList(stockSelectElement);
 
+    populateStockSelectList(stockSelectElement);
+    /**
+     * Add listener to select dropdown and push the stock names from the stock table here
+     */
     stockSelectElement.addEventListener("change", function() {
         const selectedStock = this.value;
         if (selectedStock === "") {
@@ -127,6 +130,11 @@ document.addEventListener("DOMContentLoaded", function() {
         proceedButtonElement.disabled = potentialAdjustedCashValue < 0;
     })
 
+    /**
+    * Adds a listener to the quantity input.  If a valid stock is selected from the dropdown, and a quantity of 1+ is selected,
+    * then the cost of the trade will be calculated based on the price of that stock
+    * and the cash-on-hand remaining will be calculated prior to proceeding with the trade
+    */
     quantityElement.addEventListener("change", function () {
         if (currentSelectedStock !== undefined) {
             const selectedQuantity = this.value;
@@ -144,9 +152,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 /**
- * Select stocks from the dropdown by iterating through the objects list
+ * Select stocks from the dropdown by iterating through the objects list and appending an option to the select list
  */
-
 function populateStockSelectList(stockSelectHtmlElement) {
     stocks.forEach((stock) => {
         const option = document.createElement("option");
@@ -157,7 +164,7 @@ function populateStockSelectList(stockSelectHtmlElement) {
 
 
 /**
- * Calculates the purchase cost per stock
+ * Calculates the purchase cost per stock (price*quantity) but includes an alert on the quantity and stock parameters
  */
 function calculateCost(quantity, stock) {
     if (!stock || !quantity || isNaN(quantity) || quantity <= 0) {
@@ -168,13 +175,24 @@ function calculateCost(quantity, stock) {
 }
 
 /**
- * Build stock list for HTML div with ID "stock"
+ * Resets all populated elements to blank or their original value if the "Please Select" option is chosen.
  */
-
-
-  
-
-
+function resetBuySection() {
+    const stockSelectElement = document.getElementById("stock-select");
+    stockSelectElement.selectedIndex = 0;
+    const priceElement = document.getElementById("price");
+    priceElement.innerText = "";
+    const quantityElement = document.getElementById("quantity");
+    quantityElement.innerText = 1;
+    const costElement = document.getElementById("total-cost");
+    costElement.innerText = "";
+    const potentialAdjustedCashElement = document.getElementById("potential-adjusted-cash");
+    potentialAdjustedCashElement.innerText = "";
+    const proceedButtonElement = document.getElementById("proceed-button");
+    proceedButtonElement.disabled = true;
+    const sellButtonElement = document.getElementById("sell-button") 
+    sellButtonElement.disabled = true;
+}
     
 
 /**
