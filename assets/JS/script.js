@@ -69,9 +69,20 @@ populateStockTable();
 
 // Get the button elements and add event listeners to them
 document.addEventListener("DOMContentLoaded", function() {
-    let buttons = document.getElementsByTagName("button");
-    let stockSelect = document.getElementById("stock-select");
+    let currentSelectedStock;
 
+    const buttons = document.getElementsByTagName("button");
+    const stockSelectElement = document.getElementById("stock-select");
+    const cashOnHandElement = document.getElementById("cash-on-hand");
+    const priceElement = document.getElementById("price");
+    const quantityElement = document.getElementById("quantity");
+    const costElement = document.getElementById("total-cost");
+    const potentialAdjustedCashElement = document.getElementById("potential-adjusted-cash");
+    const proceedButtonElement = document.getElementById("proceed-button");
+    const sellButtonElement = document.getElementById("sell-button")
+
+    proceedButtonElement.disabled = true;
+    sellButtonElement.disabled = true;
 
     for(let button of buttons){
         button.addEventListener("click", function() {
@@ -92,18 +103,69 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
-    stockSelect.addEventListener("onChange", function() {
-        if (this.getAttribute("data-type") === "stock-select") {
-            stockSelectList();
+    populateStockSelectList(stockSelectElement);
+
+    stockSelectElement.addEventListener("change", function() {
+        const selectedStock = this.value;
+        if (selectedStock === "") {
+            currentSelectedStock = undefined;
+            resetBuySection();
+            return;
+        }
+
+        const stock = stocks.find((stock) => stock.name === selectedStock)
+        currentSelectedStock = stock;
+        priceElement.innerText = stock.price;
+
+        quantityElement.value = defaultQuantity;
+        quantityElement.innerText = defaultQuantity;
+        const cost = calculateCost(defaultQuantity, currentSelectedStock);
+        costElement.innerText = cost;
+        const potentialAdjustedCashValue = (cashOnHand - cost).toFixed(2);
+        potentialAdjustedCashElement.innerText = potentialAdjustedCashValue
+
+        proceedButtonElement.disabled = potentialAdjustedCashValue < 0;
+    })
+
+    quantityElement.addEventListener("change", function () {
+        if (currentSelectedStock !== undefined) {
+            const selectedQuantity = this.value;
+            const cost = calculateCost(selectedQuantity, currentSelectedStock);
+            costElement.innerText = cost;
+            const potentialAdjustedCashValue = (cashOnHand - cost).toFixed(2);
+            potentialAdjustedCashElement.innerText = potentialAdjustedCashValue;
+
+            proceedButtonElement.disabled = potentialAdjustedCashValue < 0;
         }
     })
 
-    calculateCost("buy");
-    calculateProceeds("sell");
-    adjustPortfolio("proceed");
-    incrementDayCount("increment");
-    reset("reset");
+    cashOnHandElement.innerText = initialCashOnHand;
 })
+
+
+/**
+ * Select stocks from the dropdown by iterating through the objects list
+ */
+
+function populateStockSelectList(stockSelectHtmlElement) {
+    stocks.forEach((stock) => {
+        const option = document.createElement("option");
+        option.innerHTML = stock.name;
+        stockSelectHtmlElement.appendChild(option);
+    })
+    }
+
+
+/**
+ * Calculates the purchase cost per stock
+ */
+function calculateCost(quantity, stock) {
+    if (!stock || !quantity || isNaN(quantity) || quantity <= 0) {
+        alert("Please enter a valid number for quantity.");
+        return;
+    }
+    return (quantity * stock.price).toFixed(2);
+}
 
 /**
  * Build stock list for HTML div with ID "stock"
@@ -111,27 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   
-/**
- * Select stocks from the dropdown by iterating through the objects list
- * https://stackoverflow.com/questions/55627529/how-to-get-html-table-data-into-selected-options-via-the-the-javascript-at-run-t
- * https://dev.to/fpaghar/object-iteration-ways-in-javascript-pej#:~:text=entries()%3A-,Object.,%2C%20c%3A%203%20%7D%3B%20Object.
- */
 
-const values = Object.values(stocks);
-    values.forEach(value => {
-        console.log(value.name);
-    }); 
-
-function stockSelectList() {
-    const values = Object.values(stocks);
-    values.forEach(value => {
-            let option = document.createElement("option");
-            option.innerHTML=value.name;
-            stockSelect.appendChild(option)
-        
-    });   
-
-}
 
     
 
@@ -142,12 +184,7 @@ function findPrice() {
     
 }
 
-/**
- * Calculates the purchase cost per stock
- */
-function calculateCost() {
-    
-}
+
 
 /**
  * Calculates the sale proceeds per stock
