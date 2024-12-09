@@ -235,8 +235,7 @@ function incrementDayCount() {
 }
 
 /**
- * Updates the stock prices by +/- 5 once incrementDayCount function is called
- * Found on https://stackoverflow.com/questions/8597731/are-there-known-techniques-to-generate-realistic-looking-fake-stock-data
+ * Updates the stock prices between +/- 2%
  */
 function updatePrices() {
     stocks.forEach((stock) => {
