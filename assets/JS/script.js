@@ -92,8 +92,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     calculateProceeds();
             } else if(this.getAttribute("data-type") === "proceed") {
                     adjustPortfolio();
-            } else if(this.getAttribute("data-type") === "increment") {
+            } else if(this.getAttribute("data-type") === "update-prices") {
                 incrementDayCount();
+                updatePrices();
             } else if(this.getAttribute("data-type") === "reset") {
                 reset();
             } else{
@@ -229,8 +230,8 @@ function adjustCashOnHand() {
  * Increases day count by 1 for every click of the button
  */
 function incrementDayCount() {
-    let oldDayCount = parseInt(document.getElementById("day-count").innerText);
-    document.getElementById("day-count").innerText = ++oldDayCount;
+    const dayCountElement = document.getElementById("day-count");
+    dayCountElement.innerText = parseInt(dayCountElement.innerText) + 1;
 }
 
 /**
@@ -238,12 +239,25 @@ function incrementDayCount() {
  * Found on https://stackoverflow.com/questions/8597731/are-there-known-techniques-to-generate-realistic-looking-fake-stock-data
  */
 function updatePrices() {
-    rnd = Random_Float(); // generate number, 0 <= x < 1.0
-    change_percent = 2 * volatility * rnd;
-    if (change_percent > volatility)
-        change_percent -= (2 * volatility);
-    change_amount = old_price * change_percent;
-    new_price = old_price + change_amount;
+    stocks.forEach((stock) => {
+        const changePercent = (Math.random() -0.5) / 25; //random number between -2% and 2%
+        stock.price = Math.round(stock.price * (1 + changePercent) * 100) / 100; //update price and round to 2 decimals
+    });
+
+    const rows = document.querySelectorAll(".stock-row");
+    rows.forEach((row, index) => {
+        row.children[2].innerText = stocks[index].price;
+    });
+
+    incrementDayCount();
+    resetBuySection();
+}
+
+function resetStockTable() {
+    const rows = document.querySelectorAll(".stock-row");
+    rows.forEach((row, index) => {
+        row.children[2].innerText = initialStocks[index].price;
+    });
 }
 
 /**
@@ -271,7 +285,8 @@ function CalculateRateOfReturn() {
  * Resets day count to 0, reinstates original table, resets budget, removes everything from portfolio and rate of return sections
  */
 function reset() {
-    let resetDayCount = parseInt(document.getElementById("day-count").innerText = 0);
-    return[resetDayCount]
+    initValues();
+    resetStockTable();
+    resetBuySection();
 }
 
