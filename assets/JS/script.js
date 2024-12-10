@@ -18,11 +18,13 @@ const defaultQuantity = 1;
 const initialCashOnHand = 5000;
 const initialDayCount = 0;
 
+//Undeclared for use later in the code
 let myHoldings;
 let totalProceeds;
 let totalProceedsProfit;
 let cashOnHand;
 let stocks
+
 
 function initValues() {
   myHoldings = {}
@@ -34,6 +36,7 @@ function initValues() {
   
 initValues();
 
+//Create a list of stocks for the stock selection section
 function populateStockTable() {
   let html = `
     <table>
@@ -67,7 +70,7 @@ function populateStockTable() {
 
 populateStockTable();
 
-// Get the button elements and add event listeners to them
+// Get the button elements and add event listeners to them.  Create constant declarations linked to HTML IDs for use in later code
 document.addEventListener("DOMContentLoaded", function() {
     let currentSelectedStock;
 
@@ -81,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const proceedButtonElement = document.getElementById("proceed-button");
     const sellButtonElement = document.getElementById("sell-button")
 
+    //Disable the proceed and sell buttons until valid selections and quantities are applied
     proceedButtonElement.disabled = true;
     sellButtonElement.disabled = true;
 
