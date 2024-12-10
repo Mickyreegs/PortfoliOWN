@@ -114,6 +114,8 @@ populateStockTable();
 document.addEventListener("DOMContentLoaded", function () {
     let currentSelectedStock;
 
+    updateMyHoldingsUI();
+
     const buttons = document.getElementsByTagName("button");
     const stockSelectElement = document.getElementById("stock-select");
     const cashOnHandElement = document.getElementById("cash-on-hand");
@@ -128,25 +130,32 @@ document.addEventListener("DOMContentLoaded", function () {
     proceedButtonElement.disabled = true;
     sellButtonElement.disabled = true;
 
-    for (let button of buttons) {
+    for (const button of buttons) {
         button.addEventListener("click", function () {
-            if (this.getAttribute("data-type") === "buy") {
-                calculateCost();
-            } else if (this.getAttribute("data-type") === "sell") {
-                calculateProceeds();
-            } else if (this.getAttribute("data-type") === "proceed") {
-                adjustPortfolio(currentSelectedStock);
-                updateMyHoldingsUI();
-            } else if (this.getAttribute("data-type") === "update-prices") {
-                incrementDayCount();
-                updatePrices();
-            } else if (this.getAttribute("data-type") === "reset") {
-                reset();
-            } else {
-                alert(`Unknown command`);
-                throw `Unknown command: Aborting!`;
+            const dataType = this.getAttribute("data-type");
+            switch (dataType) {
+                case "sell":
+                    calculateProceeds();
+                    break;
+                case "proceed":
+                    adjustPortfolio(currentSelectedStock);
+                    updateMyHoldingsUI();
+                    updateCashUI(currentSelectedStock);
+                    break;
+                case "increment":
+                    incrementDayCount();
+                    break;
+                case "update-prices":
+                    updatePrices();
+                    break;
+                case "reset":
+                    reset();
+                    break;
+                default:
+                    alert(`Unknown Command`);
+                    throw `Unknown Command: Aborting`;              
             }
-        })
+        });
     }
 
 
@@ -362,6 +371,7 @@ function updatePrices() {
 
     incrementDayCount();
     resetBuySection();
+    updateMyHoldingsUI();
 }
 
 function resetStockTable() {
