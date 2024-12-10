@@ -158,10 +158,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
     populateStockSelectList(stockSelectElement);
+
     /**
-     * Add listener to select dropdown and push the stock names from the stock table here
+     * Add listener to select dropdown, push the stock names to an option from the stock table, calculate cost
+     * and display future cash if you go ahead with the trade
      */
     stockSelectElement.addEventListener("change", function () {
         const selectedStock = this.value;
@@ -284,7 +285,7 @@ function adjustPortfolio(stock) {
 
 function updateMyHoldingsUI() {
     let html = `
-        <div>
+        <div id="my-holdings">
             <table>
                 <thead>
                     <tr>
@@ -374,6 +375,13 @@ function updatePrices() {
     updateMyHoldingsUI();
 }
 
+/**
+ * Calculates the unrealised gain/loss when the updated prices are reflected for every day incremented
+ */
+function CalculateGainLoss(tradePrice, quantity, currentPrice) {
+    return ((currentPrice - tradePrice) * quantity).toFixed(2);
+}
+
 function resetStockTable() {
     const rows = document.querySelectorAll(".stock-row");
     rows.forEach((row, index) => {
@@ -381,26 +389,6 @@ function resetStockTable() {
     });
 }
 
-/**
- * Calculates the unrealised gain/loss when the updated prices are reflected for every day incremented
- */
-function CalculateUnrealisedGainLoss() {
-
-}
-
-/**
- * Calculates total profit/loss when a security is sold
- */
-function CalculateRealisedGainLoss() {
-
-}
-
-/**
- * Calculates the rate of return per day incremented in %
- */
-function CalculateRateOfReturn() {
-
-}
 
 /**
  * Resets day count to 0, reinstates original table, resets budget, removes everything from portfolio and rate of return sections
