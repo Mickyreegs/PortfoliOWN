@@ -241,12 +241,6 @@ function resetBuySection() {
 }
 
 
-/**
- * Finds the latest price for stock transactions and valuation
- */
-function findPrice() {
-
-}
 
 
 
@@ -337,8 +331,11 @@ function updateMyHoldingsUI() {
 /**
  * Updates the cash balance after purchases and sales are processed
  */
-function adjustCashOnHand() {
-
+function updateCashUI(stock) {
+    document.getElementById("cash-on-hand").innerText = cashOnHand.tofixed(2);
+    const potentialAdjustedCashElement = document.getElementById("potential-adjusted-cash");
+    const quantity = parseInt(document.getElementById("quantity").value);
+    potentialAdjustedCashElement.innerText = (cashOnHand - calculateCost(quantity, stock)).toFixed(2);
 }
 
 /**
