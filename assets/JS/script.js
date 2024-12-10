@@ -250,7 +250,16 @@ function resetBuySection() {
     sellButtonElement.disabled = true;
 }
 
-
+function resetSellSectionUI() {
+    const dayCountElement = document.getElementById("day-count");
+    dayCountElement.innerText = 1;
+    myHoldings = {}
+    updateMyHoldingsUI();
+    const totalProceedsElement = document.getElementById("total-proceeds");
+    totalProceedsElement.innerText = "";
+    const totalProceedsProfitElement = document.getElementById("total-proceed-profit");
+    totalProceedsProfitElement.innerText = ""
+}
 
 
 
@@ -378,7 +387,7 @@ function updatePrices() {
 /**
  * Calculates the unrealised gain/loss when the updated prices are reflected for every day incremented
  */
-function CalculateGainLoss(tradePrice, quantity, currentPrice) {
+function calculateGainLoss(tradePrice, quantity, currentPrice) {
     return ((currentPrice - tradePrice) * quantity).toFixed(2);
 }
 
@@ -397,4 +406,5 @@ function reset() {
     initValues();
     resetStockTable();
     resetBuySection();
+    document.getElementById("cash-on-hand").innerText = initialCashOnHand;
 }
