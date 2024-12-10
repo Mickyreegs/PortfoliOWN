@@ -1,18 +1,56 @@
-
 //Array of stocks at the start of the game and upon reset
-const initialStocks = [
-    { name: "Apple Inc.", ticker: "AAPL", price: 200 },
-    { name: "Alphabet Inc.", ticker: "GOOG", price: 150 },
-    { name: "Microsoft Corporation", ticker: "MSFT", price: 250 },
-    { name: "Meta Platforms, Inc.", ticker: "META", price: 300 },
-    { name: "The Bank of New York Mellon Corporation", ticker: "BK", price: 100 },
-    { name: "BlackRock Inc.", ticker: "BLK", price: 1000 },
-    { name: "Bank of America Corporation", ticker: "BAC", price: 50 },
-    { name: "Pfizer Inc.", ticker: "PFE", price: 30 },
-    { name: "Novartis AG", ticker: "NVS", price: 106 },
-    { name: "Electronic Arts Inc.", ticker: "EA", price: 165 },
+const initialStocks = [{
+        name: "Apple Inc.",
+        ticker: "AAPL",
+        price: 200
+    },
+    {
+        name: "Alphabet Inc.",
+        ticker: "GOOG",
+        price: 150
+    },
+    {
+        name: "Microsoft Corporation",
+        ticker: "MSFT",
+        price: 250
+    },
+    {
+        name: "Meta Platforms, Inc.",
+        ticker: "META",
+        price: 300
+    },
+    {
+        name: "The Bank of New York Mellon Corporation",
+        ticker: "BK",
+        price: 100
+    },
+    {
+        name: "BlackRock Inc.",
+        ticker: "BLK",
+        price: 1000
+    },
+    {
+        name: "Bank of America Corporation",
+        ticker: "BAC",
+        price: 50
+    },
+    {
+        name: "Pfizer Inc.",
+        ticker: "PFE",
+        price: 30
+    },
+    {
+        name: "Novartis AG",
+        ticker: "NVS",
+        price: 106
+    },
+    {
+        name: "Electronic Arts Inc.",
+        ticker: "EA",
+        price: 165
+    },
 ];
- 
+
 //Set Initial values at the beginning of the game and create the stock table
 const defaultQuantity = 1;
 const initialCashOnHand = 5000;
@@ -27,18 +65,20 @@ let stocks
 
 
 function initValues() {
-  myHoldings = {}
-  totalProceeds = 0;
-  totalProceedsProfit = 0;
-  cashOnHand = initialCashOnHand;
-  stocks = initialStocks.map((stock) => ({...stock}));
+    myHoldings = {}
+    totalProceeds = 0;
+    totalProceedsProfit = 0;
+    cashOnHand = initialCashOnHand;
+    stocks = initialStocks.map((stock) => ({
+        ...stock
+    }));
 }
-  
+
 initValues();
 
 //Create a list of stocks for the stock selection section
 function populateStockTable() {
-  let html = `
+    let html = `
     <table>
       <thead>
         <tr>
@@ -49,29 +89,29 @@ function populateStockTable() {
       </thead>
       <tbody>
   `;
-  
-  for (const stock of stocks) {
-    html += `
+
+    for (const stock of stocks) {
+        html += `
       <tr class="stock-row">
         <td>${stock.name}</td>
         <td>${stock.ticker}</td>
         <td>${stock.price}</td>
       </tr>
     `;
-  }
+    }
 
-  html += `
+    html += `
     </tbody>
   </table>
   `;
-  
-  document.getElementById("stock-table").innerHTML = html;
+
+    document.getElementById("stock-table").innerHTML = html;
 }
 
 populateStockTable();
 
 // Get the button elements and add event listeners to them.  Create constant declarations linked to HTML IDs for use in later code
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let currentSelectedStock;
 
     const buttons = document.getElementsByTagName("button");
@@ -88,23 +128,24 @@ document.addEventListener("DOMContentLoaded", function() {
     proceedButtonElement.disabled = true;
     sellButtonElement.disabled = true;
 
-    for(let button of buttons){
-        button.addEventListener("click", function() {
+    for (let button of buttons) {
+        button.addEventListener("click", function () {
             if (this.getAttribute("data-type") === "buy") {
                 calculateCost();
             } else if (this.getAttribute("data-type") === "sell") {
-                    calculateProceeds();
-            } else if(this.getAttribute("data-type") === "proceed") {
-                    adjustPortfolio();
-            } else if(this.getAttribute("data-type") === "update-prices") {
+                calculateProceeds();
+            } else if (this.getAttribute("data-type") === "proceed") {
+                adjustPortfolio(currentSelectedStock);
+                updateMyHoldingsUI();
+            } else if (this.getAttribute("data-type") === "update-prices") {
                 incrementDayCount();
                 updatePrices();
-            } else if(this.getAttribute("data-type") === "reset") {
+            } else if (this.getAttribute("data-type") === "reset") {
                 reset();
-            } else{
-              alert(`Unknown command`);
-              throw `Unknown command: Aborting!`;
-            } 
+            } else {
+                alert(`Unknown command`);
+                throw `Unknown command: Aborting!`;
+            }
         })
     }
 
@@ -113,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
     /**
      * Add listener to select dropdown and push the stock names from the stock table here
      */
-    stockSelectElement.addEventListener("change", function() {
+    stockSelectElement.addEventListener("change", function () {
         const selectedStock = this.value;
         if (selectedStock === "") {
             currentSelectedStock = undefined;
@@ -136,10 +177,10 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     /**
-    * Adds a listener to the quantity input.  If a valid stock is selected from the dropdown, and a quantity of 1+ is selected,
-    * then the cost of the trade will be calculated based on the price of that stock
-    * and the cash-on-hand remaining will be calculated prior to proceeding with the trade
-    */
+     * Adds a listener to the quantity input.  If a valid stock is selected from the dropdown, and a quantity of 1+ is selected,
+     * then the cost of the trade will be calculated based on the price of that stock
+     * and the cash-on-hand remaining will be calculated prior to proceeding with the trade
+     */
     quantityElement.addEventListener("change", function () {
         if (currentSelectedStock !== undefined) {
             const selectedQuantity = this.value;
@@ -165,7 +206,7 @@ function populateStockSelectList(stockSelectHtmlElement) {
         option.innerHTML = stock.name;
         stockSelectHtmlElement.appendChild(option);
     })
-    }
+}
 
 
 /**
@@ -195,16 +236,16 @@ function resetBuySection() {
     potentialAdjustedCashElement.innerText = "";
     const proceedButtonElement = document.getElementById("proceed-button");
     proceedButtonElement.disabled = true;
-    const sellButtonElement = document.getElementById("sell-button") 
+    const sellButtonElement = document.getElementById("sell-button")
     sellButtonElement.disabled = true;
 }
-    
+
 
 /**
  * Finds the latest price for stock transactions and valuation
  */
 function findPrice() {
-    
+
 }
 
 
@@ -219,9 +260,79 @@ function calculateProceeds() {
 /**
  * Pushes purchases/removes sales from the portfolio array
  */
-function adjustPortfolio() {
+function adjustPortfolio(stock) {
+    const quantity = parseInt(document.getElementById("quantity").value);
+    const boughtOn = parseInt(document.getElementById("day-count").innerText);
 
+    if (!myHoldings[stock.ticker]) {
+        myHoldings[stock.ticker] = [];
+    }
+
+    myHoldings[stock.ticker].push({
+        name: stock.name,
+        tradePrice: stock.price,
+        quantity: quantity,
+        boughtOn: boughtOn,
+        uniqueId: Math.random().toString(36),
+    });
+
+    cashOnHand -= calculateCost(quantity, stock);
 }
+
+function updateMyHoldingsUI() {
+    let html = `
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Company</th>
+                        <th>Ticker</th>
+                        <th>Trade Price</th>
+                        <th>Quantity</th>
+                        <th>Trade Day</th>
+                        <th>Unrealised Gain/Loss</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    for (const ticker in myHoldings) {
+        const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
+        const rows = myholdings[ticker].map((holding) => {
+            let unrealisedGainLoss = calculateGainLoss(
+                holding.tradePrice,
+                holding.quantity,
+                currentPrice
+            );
+            unrealisedGainLoss = unrealisedGainLoss < 0 ?
+                `<span style="color: red;">${unrealisedGainLoss}</span>` :
+                `<span style="color: green;">${unrealisedGainLoss}</span>`;
+            return `
+                <tr>
+                    <td><input type="checkbox" class="holding-checkbox" id=${holding.uniqueId} onchange="handleCheckBoxChange('${holding.uniqueId}-${ticker}')</td>
+                    <td>${holding.name}</td>
+                    <td>${ticker}</td>
+                    <td>${holding.tradePrice}</td>
+                    <td>${holding.quantity}</td>
+                    <td>${holding.boughtOn}</td>
+                    <td>${unrealisedGainLoss}</td>
+                </tr>
+                `;
+        })
+        html += rows.join("");
+    }
+
+    html += `
+                </tbody>
+            </table>
+        </div>
+    `;
+    document.getElementById("my-holdings").innerHTML = html;
+    document.getElementById("total-proceeds").innerText = "";
+    document.getElementById("total-proceed-profit").innerText = "";
+}
+
 
 /**
  * Updates the cash balance after purchases and sales are processed
@@ -243,7 +354,7 @@ function incrementDayCount() {
  */
 function updatePrices() {
     stocks.forEach((stock) => {
-        const changePercent = (Math.random() -0.5) / 25; //random number between -2% and 2%
+        const changePercent = (Math.random() - 0.5) / 25; //random number between -2% and 2%
         stock.price = Math.round(stock.price * (1 + changePercent) * 100) / 100; //update price and round to 2 decimals
     });
 
@@ -292,4 +403,3 @@ function reset() {
     resetStockTable();
     resetBuySection();
 }
-
