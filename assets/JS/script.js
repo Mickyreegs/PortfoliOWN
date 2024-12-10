@@ -312,7 +312,7 @@ function updateMyHoldingsUI() {
 
     for (const ticker in myHoldings) {
         const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
-        const rows = myholdings[ticker].map((holding) => {
+        const rows = myHoldings[ticker].map((holding) => {
             let unrealisedGainLoss = calculateGainLoss(
                 holding.tradePrice,
                 holding.quantity,
@@ -341,6 +341,7 @@ function updateMyHoldingsUI() {
             </table>
         </div>
     `;
+
     document.getElementById("my-holdings").innerHTML = html;
     document.getElementById("total-proceeds").innerText = "";
     document.getElementById("total-proceed-profit").innerText = "";
@@ -351,7 +352,7 @@ function updateMyHoldingsUI() {
  * Updates the cash balance after purchases and sales are processed
  */
 function updateCashUI(stock) {
-    document.getElementById("cash-on-hand").innerText = cashOnHand.tofixed(2);
+    document.getElementById("cash-on-hand").innerText = cashOnHand.toFixed(2);
     const potentialAdjustedCashElement = document.getElementById("potential-adjusted-cash");
     const quantity = parseInt(document.getElementById("quantity").value);
     potentialAdjustedCashElement.innerText = (cashOnHand - calculateCost(quantity, stock)).toFixed(2);
@@ -406,5 +407,6 @@ function reset() {
     initValues();
     resetStockTable();
     resetBuySection();
+    resetSellSectionUI();
     document.getElementById("cash-on-hand").innerText = initialCashOnHand;
 }
