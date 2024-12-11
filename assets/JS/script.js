@@ -56,7 +56,6 @@ const initialStocks = [{
 //Set Initial values at the beginning of the game and create the stock table
 const defaultQuantity = 1;
 const initialCashOnHand = 5000;
-const initialDayCount = 0;
 
 //Undeclared for use later in the code
 let myHoldings;
@@ -268,11 +267,11 @@ function calculateCost(quantity, stock) {
  */
 function calculateProceeds() {
     resetBuySection();
-    for(const ticker in myHoldings) {
+    for (const ticker in myHoldings) {
         const holdingArray = myHoldings[ticker];
         for (const holding of holdingArray) {
             const checkbox = document.getElementById(holding.uniqueId);
-            if(checkbox.checked) {
+            if (checkbox.checked) {
                 const currentPrice = stocks.find(
                     (stock) => stock.ticker === ticker
                 ).price;
@@ -327,20 +326,20 @@ function updateMyHoldingsUI() {
                   </thead>
                   <tbody>
       `;
-  
+
     for (const ticker in myHoldings) {
-      const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
-      const rows = myHoldings[ticker].map((holding) => {
-        let unrealizedGainLoss = calculateGainLoss(
-          holding.tradePrice,
-          holding.quantity,
-          currentPrice
-        );
-        unrealizedGainLoss =
-          unrealizedGainLoss < 0
-            ? `<span style="color: red;">${unrealizedGainLoss}</span>`
-            : `<span style="color: green;">${unrealizedGainLoss}</span>`;
-        return `
+        const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
+        const rows = myHoldings[ticker].map((holding) => {
+            let unrealizedGainLoss = calculateGainLoss(
+                holding.tradePrice,
+                holding.quantity,
+                currentPrice
+            );
+            unrealizedGainLoss =
+                unrealizedGainLoss < 0 ?
+                `<span style="color: red;">${unrealizedGainLoss}</span>` :
+                `<span style="color: green;">${unrealizedGainLoss}</span>`;
+            return `
                   <tr>
                       <td><input type="checkbox" class="holding-checkbox" id=${holding.uniqueId} onchange="handleCheckboxChange('${holding.uniqueId}-${ticker}')"></td>
                       <td>${holding.name}</td>
@@ -351,16 +350,16 @@ function updateMyHoldingsUI() {
                       <td>${unrealizedGainLoss}</td>
                   </tr>
               `;
-      });
-      html += rows.join("");
+        });
+        html += rows.join("");
     }
-  
+
     html += `
                   </tbody>
               </table>
           </div>
       `;
-  
+
     document.getElementById("my-holdings").innerHTML = html;
     document.getElementById("total-proceeds").innerText = "";
     document.getElementById("total-proceed-profit").innerText = "";
