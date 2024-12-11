@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     break;
                 default:
                     alert(`Unknown Command`);
-                    throw `Unknown Command: Aborting`;              
+                    throw `Unknown Command: Aborting`;
             }
         });
     }
@@ -295,61 +295,62 @@ function adjustPortfolio(stock) {
 
 function updateMyHoldingsUI() {
     let html = `
-        <div style="overflow-y: auto; max-height: 250px; id="my-holdings">
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Company</th>
-                        <th>Ticker</th>
-                        <th>Trade Price</th>
-                        <th>Quantity</th>
-                        <th>Trade Day</th>
-                        <th>Unrealised Gain/Loss</th>
-                    </tr>
-                </thead>
-                <tbody>
-    `;
-
+          <div style="overflow-y: auto; max-height: 250px;">
+              <table>
+                  <thead>
+                      <tr>
+                          <th></th>
+                          <th>Company</th>
+                          <th>Ticker</th>
+                          <th>Trade Price</th>
+                          <th>Quantity</th>
+                          <th>Trade Day</th>
+                          <th>Unrealised Gain/Loss</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+      `;
+  
     for (const ticker in myHoldings) {
-        const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
-        const rows = myHoldings[ticker].map((holding) => {
-            let unrealisedGainLoss = calculateGainLoss(
-                holding.tradePrice,
-                holding.quantity,
-                currentPrice
-            );
-            unrealisedGainLoss = unrealisedGainLoss < 0 ?
-                `<span style="color: red;">${unrealisedGainLoss}</span>` :
-                `<span style="color: green;">${unrealisedGainLoss}</span>`;
-            return `
-                <tr>
-                    <td><input type="checkbox" class="holding-checkbox" id=${holding.uniqueId} onchange="handleCheckBoxChange('${holding.uniqueId}-${ticker}')</td>
-                    <td>${holding.name}</td>
-                    <td>${ticker}</td>
-                    <td>${holding.tradePrice}</td>
-                    <td>${holding.quantity}</td>
-                    <td>${holding.boughtOn}</td>
-                    <td>${unrealisedGainLoss}</td>
-                </tr>
-                `;
-        })
-        html += rows.join("");
+      const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
+      const rows = myHoldings[ticker].map((holding) => {
+        let unrealizedGainLoss = calculateGainLoss(
+          holding.tradePrice,
+          holding.quantity,
+          currentPrice
+        );
+        unrealizedGainLoss =
+          unrealizedGainLoss < 0
+            ? `<span style="color: red;">${unrealizedGainLoss}</span>`
+            : `<span style="color: green;">${unrealizedGainLoss}</span>`;
+        return `
+                  <tr>
+                      <td><input type="checkbox" class="holding-checkbox" id=${holding.uniqueId} onchange="handleCheckboxChange('${holding.uniqueId}-${ticker}')"></td>
+                      <td>${holding.name}</td>
+                      <td>${ticker}</td>
+                      <td>${holding.tradePrice}</td>
+                      <td>${holding.quantity}</td>
+                      <td>${holding.boughtOn}</td>
+                      <td>${unrealizedGainLoss}</td>
+                  </tr>
+              `;
+      });
+      html += rows.join("");
     }
-
+  
     html += `
-                </tbody>
-            </table>
-        </div>
-    `;
-
+                  </tbody>
+              </table>
+          </div>
+      `;
+  
     document.getElementById("my-holdings").innerHTML = html;
     document.getElementById("total-proceeds").innerText = "";
     document.getElementById("total-proceed-profit").innerText = "";
 }
 
 function handleCheckBoxChange(holdingCombinationId) {
-    const[uniqueId, ticker] = holdingCombinationId.split("-");
+    const [uniqueId, ticker] = holdingCombinationId.split("-");
     const sellButtonElement = document.getElementById("sell-button");
     const totalProceedsElement = document.getElementById("total-proceeds");
     const totalProceedsProfitElement = document.getElementById("total-proceed-profit");
@@ -363,7 +364,7 @@ function handleCheckBoxChange(holdingCombinationId) {
         const holdingArray = myHoldings[ticker];
         for (const holding of holdingArray) {
             const checkbox = document.getElementById(holding.uniqueId);
-            if(checkbox.checked) {
+            if (checkbox.checked) {
                 atLeastOneChecked = true;
                 break;
             }
@@ -399,9 +400,9 @@ function handleCheckBoxChange(holdingCombinationId) {
         ).toFixed(2);
     }
 
-    totalProceedsProfitElement.innerHTML = realisedGainLoss < 0
-        ?`<span style="color: red">${totalProceedsProfit}</span>`
-        :`<span style="color: green;">${totalProceedsProfit}</span>`
+    totalProceedsProfitElement.innerHTML = realisedGainLoss < 0 ?
+        `<span style="color: red">${totalProceedsProfit}</span>` :
+        `<span style="color: green;">${totalProceedsProfit}</span>`
 }
 
 /**
