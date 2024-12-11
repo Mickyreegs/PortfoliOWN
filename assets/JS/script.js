@@ -294,7 +294,7 @@ function adjustPortfolio(stock) {
 
 function updateMyHoldingsUI() {
     let html = `
-        <div id="my-holdings">
+        <div style="overflow-y: auto; max-height: 250px; id="my-holdings">
             <table>
                 <thead>
                     <tr>
