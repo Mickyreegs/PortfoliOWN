@@ -307,11 +307,9 @@ function adjustPortfolio(stock) {
         uniqueId: Math.random().toString(36),
     });
 
-    if (calculateCost > cashOnHand) {
-        proceedButtonElement.disabled = true;
-    } else{
+    
         cashOnHand -= calculateCost(quantity, stock);
-    }
+    
     
 }
 
