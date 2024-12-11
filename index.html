@@ -19,10 +19,13 @@
 </head>
 
 <body>
+    <header>
+        <h1>PortfoliOWN</h1>
+    </header>
 
     <section id="stock-options">
         <h1>Stock Selection</h1>
-
+        <hr>
         <div id="stock-table"></div>
 
         <div>
@@ -32,7 +35,8 @@
     </section>
 
     <section id="portfolio">
-        <h1>Build/Edit Your Portfolio</h1>
+        <h1>Build Your Portfolio</h1>
+        <hr>
         <div id="cash">
             <p>Cash For Investment <span id="cash-on-hand"></span></p>
         </div>
@@ -61,12 +65,32 @@
 
     <section id="daily-valuation">
         <h1>Portfolio Valuation</h1>
+        <hr>
         <div id="my-holdings"></div>
         <div id="daily-update">
             <p class="cash value">Total Proceeds: <span id="total-proceeds"></span></p>
             <p class="cash-value">Total Profits: <span id="total-proceed-profit"></span></p>
             <p>Day Count <span id="day-count">1</span></p>
             <button id="sell-button" data-type="sell">Sell Stock</button>
+        </div>
+    </section>
+
+    <section id="how-to-play">
+        <h1>How To Play</h1>
+        <hr>
+        <div id="list">
+            <p>
+                <ul>
+                    <li>Select a stock from the dropdown list</li>
+                    <li>Select a quantity</li>
+                    <li>Proceed with trades to populate your portfolio</li>
+                    <li>When happy with your portfolio, hit "Update Day Count"</li>
+                    <li>the day count will increase and he prices will adjust</li>
+                    <li>Keep an eye on your unrealised gain/loss figures</li>
+                    <li>If you wan to sell a position, select the checkbox in Portfolio Valuation, and hit "Sell"</li>
+                    <li>Your portfolio will adjust and cash proceed added to your "Cash For Investment"</li>
+                </ul>
+            </p>
         </div>
     </section>
 
