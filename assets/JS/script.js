@@ -57,7 +57,7 @@ const initialStocks = [{
 const defaultQuantity = 1;
 const initialCashOnHand = 5000;
 
-//Undeclared for use later in the code
+//For use later in the code
 let myHoldings;
 let totalProceeds;
 let totalProceedsProfit;
@@ -77,7 +77,7 @@ function initValues() {
 
 initValues();
 
-//Create a list of stocks for the stock selection section
+//Create a list of stocks for the stock selection section and populates based on the initial stocks array
 function populateStockTable() {
     let html = `
     <table>
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Resets all populated elements to blank or their original value if the "Please Select" option is chosen.
+ * Resets all populated elements to blank or their original value and disables the proceed and sell buttons.
  */
 function resetBuySection() {
     const stockSelectElement = document.getElementById("stock-select");
@@ -263,7 +263,7 @@ function calculateCost(quantity, stock) {
 
 
 /**
- * Calculates the sale proceeds per stock
+ * Calculates the sale proceeds per stock and updates the cash on hand while removing the holding from the portfolio
  */
 function calculateProceeds() {
     resetBuySection();
@@ -288,7 +288,8 @@ function calculateProceeds() {
 }
 
 /**
- * Pushes purchases/removes sales from the portfolio array
+ * Pushes purchases to the myHoldings array and adjusts cash on hand after taking into
+ * account the cost of purchases.
  */
 function adjustPortfolio(stock) {
     const quantity = parseInt(document.getElementById("quantity").value);
@@ -309,6 +310,11 @@ function adjustPortfolio(stock) {
     cashOnHand -= calculateCost(quantity, stock);
 }
 
+/**
+ * Creates a HTML table and populates the company, ticker, original trade price
+ * quantity of stock bought, the day it was traded on, and the unrealised gain
+ * based on the updated prices.  A gain is highlighted in gree, loss in red.
+ */
 function updateMyHoldingsUI() {
     let html = `
           <div style="overflow-y: auto; max-height: 250px;">
@@ -365,6 +371,12 @@ function updateMyHoldingsUI() {
     document.getElementById("total-proceed-profit").innerText = "";
 }
 
+/**
+ * As the trades are processed in lots, a unique ID is added along with the ticker to distinguish
+ * between each trade.  If the check boxes are checked, this calculates the proceeds for selling that lot, 
+ * along with the total profit based on the updated prices.  The sell button is disabled until 
+ * at least one checkbox is checked.  Profits per lot are highlighted in green, losses in red.
+ */
 function handleCheckboxChange(holdingCombinationId) {
     const [uniqueId, ticker] = holdingCombinationId.split("-");
     const sellButtonElement = document.getElementById("sell-button");
@@ -422,7 +434,7 @@ function handleCheckboxChange(holdingCombinationId) {
 }
 
 /**
- * Updates the cash balance after purchases and sales are processed
+ * Shows the user the cost per trade and how much cash on hand is available if they were to proceed.
  */
 function updateCashUI(stock) {
     document.getElementById("cash-on-hand").innerText = cashOnHand.toFixed(2);
@@ -440,7 +452,9 @@ function incrementDayCount() {
 }
 
 /**
- * Updates the stock prices between +/- 2%
+ * Use randomised numbers to create updated stock prices per day between +/- 2%.  The updated prices will be 
+ * reflected in the portfolio to calculate unrealised/realised gains or losses.  The updated prices will also be used 
+ * as the latest price at which you can purchase/sell a stock.
  */
 function updatePrices() {
     stocks.forEach((stock) => {
@@ -459,12 +473,15 @@ function updatePrices() {
 }
 
 /**
- * Calculates the unrealised gain/loss when the updated prices are reflected for every day incremented
+ * Calculates the unrealised gain/loss when the updated prices are reflected for every day incremented.
  */
 function calculateGainLoss(tradePrice, quantity, currentPrice) {
     return ((currentPrice - tradePrice) * quantity).toFixed(2);
 }
 
+/**
+ * Resets the stock table back to its original array.
+ */
 function resetStockTable() {
     const rows = document.querySelectorAll(".stock-row");
     rows.forEach((row, index) => {
