@@ -267,6 +267,7 @@ function calculateCost(quantity, stock) {
 function calculateProceeds() {
     resetBuySection();
     for(const ticker in myHoldings) {
+        const holdingArray = myHoldings[ticker];
         for (const holding of holdingArray) {
             const checkbox = document.getElementById(holding.uniqueId);
             if(checkbox.checked) {
