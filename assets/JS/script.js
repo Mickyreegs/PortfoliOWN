@@ -206,30 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
     cashOnHandElement.innerText = initialCashOnHand;
 })
 
-
-/**
- * Select stocks from the dropdown by iterating through the objects list and appending an option to the select list
- */
-function populateStockSelectList(stockSelectHtmlElement) {
-    stocks.forEach((stock) => {
-        const option = document.createElement("option");
-        option.innerHTML = stock.name;
-        stockSelectHtmlElement.appendChild(option);
-    })
-}
-
-
-/**
- * Calculates the purchase cost per stock (price*quantity) but includes an alert on the quantity and stock parameters
- */
-function calculateCost(quantity, stock) {
-    if (!stock || !quantity || isNaN(quantity) || quantity <= 0) {
-        alert("Please enter a valid number for quantity.");
-        return;
-    }
-    return (quantity * stock.price).toFixed(2);
-}
-
 /**
  * Resets all populated elements to blank or their original value if the "Please Select" option is chosen.
  */
@@ -260,6 +236,31 @@ function resetSellSectionUI() {
     const totalProceedsProfitElement = document.getElementById("total-proceed-profit");
     totalProceedsProfitElement.innerText = ""
 }
+
+/**
+ * Select stocks from the dropdown by iterating through the objects list and appending an option to the select list
+ */
+function populateStockSelectList(stockSelectHtmlElement) {
+    stocks.forEach((stock) => {
+        const option = document.createElement("option");
+        option.innerHTML = stock.name;
+        stockSelectHtmlElement.appendChild(option);
+    })
+}
+
+
+/**
+ * Calculates the purchase cost per stock (price*quantity) but includes an alert on the quantity and stock parameters
+ */
+function calculateCost(quantity, stock) {
+    if (!stock || !quantity || isNaN(quantity) || quantity <= 0) {
+        alert("Please enter a valid number for quantity.");
+        return;
+    }
+    return (quantity * stock.price).toFixed(2);
+}
+
+
 
 
 
