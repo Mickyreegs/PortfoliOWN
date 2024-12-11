@@ -347,6 +347,61 @@ function updateMyHoldingsUI() {
     document.getElementById("total-proceed-profit").innerText = "";
 }
 
+function handleCheckBoxChange(holdingCombinationId) {
+    const[uniqueId, ticker] = holdingCombinationId.split("-");
+    const sellButtonElement = document.getElementById("sell-button");
+    const totalProceedsElement = document.getElementById("total-proceeds");
+    const totalProceedsProfitElement = document.getElementById("total-proceed-profit");
+    totalProceedsElement.innerText = "";
+    totalProceedsProfitElement.innerText = "";
+
+    const currentCheckbox = document.getElementById(uniqueId);
+
+    let atLeastOneChecked = false;
+    for (const ticker in myHoldings) {
+        const holdingArray = myHoldings[ticker];
+        for (const holding of holdingArray) {
+            const checkbox = document.getElementById(holding.uniqueId);
+            if(checkbox.checked) {
+                atLeastOneChecked = true;
+                break;
+            }
+        }
+        if (atLeastOneChecked) {
+            break;
+        }
+    }
+
+    sellButtonElement.disabled = !atLeastOneChecked;
+
+    const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
+    const selectedHolding = myHoldings[ticker].find(
+        (holding) => holding.uniqueId === uniqueId
+    );
+
+    const totalSell = selectedHolding.quantity * currentPrice;
+
+    if (currentCheckbox.checked) {
+        totalProceeds = (parseFloat(totalProceeds) + parseFloat(totalSell)).toFixed(2);
+    }
+
+    totalProceedsElement.innerText = totalProceeds;
+
+    const realisedGainLoss = calculateGainLoss(
+        selectedHolding.tradePrice,
+        selectedHolding.quantity,
+        currentPrice
+    );
+    if (currentCheckbox.checked) {
+        totalProceedsProfit = (
+            parseFloat(totalProceedsProfit) + parseFloat(realisedGainLoss)
+        ).toFixed(2);
+    }
+
+    totalProceedsProfitElement.innerHTML = realisedGainLoss < 0
+        ?`<span style="color: red">${totalProceedsProfit}</span>`
+        :`<span style="color: green;">${totalProceedsProfit}</span>`
+}
 
 /**
  * Updates the cash balance after purchases and sales are processed
