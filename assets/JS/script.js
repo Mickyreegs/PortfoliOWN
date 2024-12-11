@@ -1,3 +1,5 @@
+/*jshint esnext: true*/
+
 //Array of stocks at the start of the game and upon reset
 const initialStocks = [{
         name: "Apple Inc.",
@@ -61,11 +63,11 @@ let myHoldings;
 let totalProceeds;
 let totalProceedsProfit;
 let cashOnHand;
-let stocks
+let stocks;
 
 
 function initValues() {
-    myHoldings = {}
+    myHoldings = {};
     totalProceeds = 0;
     totalProceedsProfit = 0;
     cashOnHand = initialCashOnHand;
@@ -124,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const costElement = document.getElementById("total-cost");
     const potentialAdjustedCashElement = document.getElementById("potential-adjusted-cash");
     const proceedButtonElement = document.getElementById("proceed-button");
-    const sellButtonElement = document.getElementById("sell-button")
+    const sellButtonElement = document.getElementById("sell-button");
 
     //Disable the proceed and sell buttons until valid selections and quantities are applied
     proceedButtonElement.disabled = true;
@@ -172,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const stock = stocks.find((stock) => stock.name === selectedStock)
+        const stock = stocks.find((stock) => stock.name === selectedStock);
         currentSelectedStock = stock;
         priceElement.innerText = stock.price;
 
@@ -181,10 +183,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const cost = calculateCost(defaultQuantity, currentSelectedStock);
         costElement.innerText = cost;
         const potentialAdjustedCashValue = (cashOnHand - cost).toFixed(2);
-        potentialAdjustedCashElement.innerText = potentialAdjustedCashValue
+        potentialAdjustedCashElement.innerText = potentialAdjustedCashValue;
 
         proceedButtonElement.disabled = potentialAdjustedCashValue < 0;
-    })
+    });
 
     /**
      * Adds a listener to the quantity input.  If a valid stock is selected from the dropdown, and a quantity of 1+ is selected,
@@ -201,10 +203,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             proceedButtonElement.disabled = potentialAdjustedCashValue < 0;
         }
-    })
+    });
 
     cashOnHandElement.innerText = initialCashOnHand;
-})
+});
 
 /**
  * Resets all populated elements to blank or their original value if the "Please Select" option is chosen.
@@ -222,19 +224,19 @@ function resetBuySection() {
     potentialAdjustedCashElement.innerText = "";
     const proceedButtonElement = document.getElementById("proceed-button");
     proceedButtonElement.disabled = true;
-    const sellButtonElement = document.getElementById("sell-button")
+    const sellButtonElement = document.getElementById("sell-button");
     sellButtonElement.disabled = true;
 }
 
 function resetSellSectionUI() {
     const dayCountElement = document.getElementById("day-count");
     dayCountElement.innerText = 1;
-    myHoldings = {}
+    myHoldings = {};
     updateMyHoldingsUI();
     const totalProceedsElement = document.getElementById("total-proceeds");
     totalProceedsElement.innerText = "";
     const totalProceedsProfitElement = document.getElementById("total-proceed-profit");
-    totalProceedsProfitElement.innerText = ""
+    totalProceedsProfitElement.innerText = "";
 }
 
 /**
@@ -245,7 +247,7 @@ function populateStockSelectList(stockSelectHtmlElement) {
         const option = document.createElement("option");
         option.innerHTML = stock.name;
         stockSelectHtmlElement.appendChild(option);
-    })
+    });
 }
 
 
@@ -417,7 +419,7 @@ function handleCheckboxChange(holdingCombinationId) {
 
     totalProceedsProfitElement.innerHTML = realisedGainLoss < 0 ?
         `<span style="color: red">${totalProceedsProfit}</span>` :
-        `<span style="color: green;">${totalProceedsProfit}</span>`
+        `<span style="color: green;">${totalProceedsProfit}</span>`;
 }
 
 /**
