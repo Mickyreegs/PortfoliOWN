@@ -261,14 +261,28 @@ function calculateCost(quantity, stock) {
 }
 
 
-
-
-
 /**
  * Calculates the sale proceeds per stock
  */
 function calculateProceeds() {
-
+    resetBuySection();
+    for(const ticker in myHoldings) {
+        for (const holding of holdingArray) {
+            const checkbox = document.getElementById(holding.uniqueId);
+            if(checkbox.checked) {
+                const currentPrice = stocks.find(
+                    (stock) => stock.ticker === ticker
+                ).price;
+                const moneyReceived = holding.quantity * currentPrice;
+                cashOnHand += parseFloat(moneyReceived);
+                holdingArray.splice(holdingArray.indexOf(holding), 1);
+            }
+        }
+    }
+    updateMyHoldingsUI();
+    document.getElementById("cash-on-hand").innerText = cashOnHand.toFixed(2);
+    totalProceeds = 0;
+    totalProceedsProfit = 0;
 }
 
 /**
@@ -349,7 +363,7 @@ function updateMyHoldingsUI() {
     document.getElementById("total-proceed-profit").innerText = "";
 }
 
-function handleCheckBoxChange(holdingCombinationId) {
+function handleCheckboxChange(holdingCombinationId) {
     const [uniqueId, ticker] = holdingCombinationId.split("-");
     const sellButtonElement = document.getElementById("sell-button");
     const totalProceedsElement = document.getElementById("total-proceeds");
