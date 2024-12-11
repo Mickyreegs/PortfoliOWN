@@ -53,7 +53,7 @@ const initialStocks = [{
     },
 ];
 
-//Set Initial values at the beginning of the game and create the stock table
+//Set Initial cash on hand and default stock quantity at the beginning of the game
 const defaultQuantity = 1;
 const initialCashOnHand = 5000;
 
@@ -64,7 +64,7 @@ let totalProceedsProfit;
 let cashOnHand;
 let stocks;
 
-
+//Set initial values and apply
 function initValues() {
     myHoldings = {};
     totalProceeds = 0;
@@ -307,7 +307,12 @@ function adjustPortfolio(stock) {
         uniqueId: Math.random().toString(36),
     });
 
-    cashOnHand -= calculateCost(quantity, stock);
+    if (calculateCost > cashOnHand) {
+        proceedButtonElement.disabled = true;
+    } else{
+        cashOnHand -= calculateCost(quantity, stock);
+    }
+    
 }
 
 /**
