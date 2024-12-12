@@ -306,10 +306,9 @@ function adjustPortfolio(stock) {
         boughtOn: boughtOn,
         uniqueId: Math.random().toString(36),
     });
-
     
         cashOnHand -= calculateCost(quantity, stock);
-    
+        resetBuySection();
     
 }
 
