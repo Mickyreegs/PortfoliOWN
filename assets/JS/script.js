@@ -343,30 +343,33 @@ function updateMyHoldingsUI() {
       `;
 
     for (const ticker in myHoldings) {
-        const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
-        const rows = myHoldings[ticker].map((holding) => {
-            let unrealizedGainLoss = calculateGainLoss(
-                holding.tradePrice,
-                holding.quantity,
-                currentPrice
-            );
-            unrealizedGainLoss =
-                unrealizedGainLoss < 0 ?
-                `<span style="color: red;">${unrealizedGainLoss}</span>` :
-                `<span style="color: green;">${unrealizedGainLoss}</span>`;
-            return `
-                  <tr>
-                      <td><input type="checkbox" class="holding-checkbox" id=${holding.uniqueId} onchange="handleCheckboxChange('${holding.uniqueId}-${ticker}')"></td>
-                      <td>${holding.name}</td>
-                      <td>${ticker}</td>
-                      <td>${holding.tradePrice}</td>
-                      <td>${holding.quantity}</td>
-                      <td>${holding.boughtOn}</td>
-                      <td>${unrealizedGainLoss}</td>
-                  </tr>
-              `;
-        });
+        if (myHoldings.hasOwnProperty(ticker)) {
+            const currentPrice = stocks.find((stock) => stock.ticker === ticker).price;
+            const rows = myHoldings[ticker].map((holding) => {
+                let unrealizedGainLoss = calculateGainLoss(
+                    holding.tradePrice,
+                    holding.quantity,
+                    currentPrice
+                );
+                unrealizedGainLoss =
+                    unrealizedGainLoss < 0 ?
+                    `<span style="color: red;">${unrealizedGainLoss}</span>` :
+                    `<span style="color: green;">${unrealizedGainLoss}</span>`;
+                return `
+                    <tr>
+                        <td><input type="checkbox" class="holding-checkbox" id=${holding.uniqueId} onchange="handleCheckboxChange('${holding.uniqueId}-${ticker}')"></td>
+                        <td>${holding.name}</td>
+                        <td>${ticker}</td>
+                        <td>${holding.tradePrice}</td>
+                        <td>${holding.quantity}</td>
+                        <td>${holding.boughtOn}</td>
+                        <td>${unrealizedGainLoss}</td>
+                    </tr>
+                `;
+            });
+        
         html += rows.join("");
+        }
     }
 
     html += `
