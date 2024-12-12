@@ -4,7 +4,7 @@ Welcome, all!
 
 This document aims to explain the who, what, why, and how of the PortfoliOWN website.
 
-![PortfoliOWN Website](https://mickyreegs.github.io/PortfoliOWN/)
+[PortfoliOWN Website](https://mickyreegs.github.io/PortfoliOWN)
 
 
 ## PortfoliOWN
@@ -177,7 +177,7 @@ The site was deployed through GitHub.  The steps taken were:
 
 [Google Fonts](https://fonts.google.com/)
 
-[Favicon - Head Icon](https://favicon.io/emoji-favicons/drum/)
+[Favicon](https://favicon.io/)
 
 ### The following projects were referenced in relation to HTML, CSS & JavaScript:
 
