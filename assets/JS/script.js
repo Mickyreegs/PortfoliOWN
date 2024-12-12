@@ -70,10 +70,14 @@ function initValues() {
     totalProceeds = 0;
     totalProceedsProfit = 0;
     cashOnHand = initialCashOnHand;
-    stocks = initialStocks.map((stock) => ({
-        ...stock
-    }));
-}
+    stocks = initialStocks.map(function (stock) {
+        return {
+          name: stock.name,
+          ticker: stock.ticker,
+          price: stock.price,
+        };
+      });
+    }
 
 initValues();
 
@@ -416,6 +420,8 @@ function handleCheckboxChange(holdingCombinationId) {
 
     if (currentCheckbox.checked) {
         totalProceeds = (parseFloat(totalProceeds) + parseFloat(totalSell)).toFixed(2);
+    } else if (!currentCheckbox.checked) {
+        totalProceeds = 0.00;
     }
 
     totalProceedsElement.innerText = totalProceeds;
@@ -429,6 +435,8 @@ function handleCheckboxChange(holdingCombinationId) {
         totalProceedsProfit = (
             parseFloat(totalProceedsProfit) + parseFloat(realisedGainLoss)
         ).toFixed(2);
+    } else if (!currentCheckbox.checked) {
+        totalProceedsProfit = 0.00;
     }
 
     totalProceedsProfitElement.innerHTML = realisedGainLoss < 0 ?
