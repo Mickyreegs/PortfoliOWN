@@ -2,7 +2,9 @@
 
 Welcome, all!  
 
-This document aims to explain the who, what, why, and how of this website.
+This document aims to explain the who, what, why, and how of the PortfoliOWN website.
+
+![PortfoliOWN Website](https://mickyreegs.github.io/PortfoliOWN/)
 
 
 ## PortfoliOWN
