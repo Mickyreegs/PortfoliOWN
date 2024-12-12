@@ -214,13 +214,13 @@ function resetBuySection() {
     const stockSelectElement = document.getElementById("stock-select");
     stockSelectElement.selectedIndex = 0;
     const priceElement = document.getElementById("price");
-    priceElement.innerText = "";
+    priceElement.innerText = "0.00";
     const quantityElement = document.getElementById("quantity");
-    quantityElement.innerText = 1;
+    parseInt(quantityElement.innerText = 1);
     const costElement = document.getElementById("total-cost");
-    costElement.innerText = "";
+    costElement.innerText = "0.00";
     const potentialAdjustedCashElement = document.getElementById("potential-adjusted-cash");
-    potentialAdjustedCashElement.innerText = "";
+    potentialAdjustedCashElement.innerText = "0.00";
     const proceedButtonElement = document.getElementById("proceed-button");
     proceedButtonElement.disabled = true;
     const sellButtonElement = document.getElementById("sell-button");
@@ -307,8 +307,9 @@ function adjustPortfolio(stock) {
         uniqueId: Math.random().toString(36),
     });
     
-        cashOnHand -= calculateCost(quantity, stock);
-        resetBuySection();
+    cashOnHand -= calculateCost(quantity, stock);
+
+    resetBuySection();
     
 }
 
@@ -443,6 +444,8 @@ function updateCashUI(stock) {
     const potentialAdjustedCashElement = document.getElementById("potential-adjusted-cash");
     const quantity = parseInt(document.getElementById("quantity").value);
     potentialAdjustedCashElement.innerText = (cashOnHand - calculateCost(quantity, stock)).toFixed(2);
+
+    resetBuySection();
 }
 
 /**
