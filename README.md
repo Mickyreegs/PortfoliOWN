@@ -61,28 +61,8 @@ There was one warning - "Imported style sheets are not checked in direct input a
         <td>Pass</td>
     </tr>
     <tr>
-        <td>NAV Bar</td>
-        <td>NAV bar directs user to correct page</td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>NAV Bar - Highlighted Page</td>
-        <td>NAV bar highlights the page the user is currently on</td>
-        <td>Pass</td>
-    </tr>
-    <tr>
         <td>Page Responsiveness</td>
         <td>Pages are responsive to mobile, tablet and desktop users</td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>NAV Bar Menu</td>
-        <td>Menu dropdown disappears for larger screens</td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Social Media</td>
-        <td>Social media links work and open in new page</td>
         <td>Pass</td>
     </tr>
     <tr>
@@ -91,23 +71,28 @@ There was one warning - "Imported style sheets are not checked in direct input a
         <td>Pass</td>
     </tr>
     <tr>
-        <td>Audio Files</td>
-        <td>Audio controls operate correctly and play files</td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>User forms - Input Fields</td>
-        <td>Input fields are marked as required and operate as expected</td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>User forms - Dropdowns</td>
-        <td>Dropdown lists are marked as required and operate as expected</td>
-        <td>Pass</td>
-    </tr>
-    <tr>
         <td>Relative Filepaths</td>
         <td>All relative filepaths function correctly to display correct content</td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Daily Price Simulation</td>
+        <td>All prices are updating to within +/-2% and displaying correctly</td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Stock Dropdown</td>
+        <td>All stocks have been pushed to the dropdown list from JS</td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Selected Stock For Purchase</td>
+        <td>The selected stock is pushed to the Portfolio table in Portfolio Valuation</td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Game Calculations</td>
+        <td>All calculations - Cost, Proceeds, Unrealised gain/loss, Profit, Cash On Hand - Calculate as expected</td>
         <td>Pass</td>
     </tr>
     <tr>
@@ -118,7 +103,7 @@ There was one warning - "Imported style sheets are not checked in direct input a
 </table>
 
 ### Browser Performance
-All three pages performed well on the below browsers:
+the game performed well on the below browsers:
 <ul>
     <li>Google Chrome</li>
     <li>Microsoft Edge</li>
@@ -129,28 +114,44 @@ All three pages performed well on the below browsers:
 
 ### Lighthouse Checks
 
+#### Lighthouse Desktop Check
+![Lighthouse Desktop Check](assets/README/Lighthouse%20Desktop.JPG)
+
+#### Lighthouse Mobile Check
+![Lighthouse Mobile Check](assets/README/Lighthouse%20Mobile.JPG)
 
 ### Bug Fixes
-Bugs that were discovered and fixed are as follows - Screenshots are added below:
+Bugs that were discovered and fixed are as follows:
 <ul>
-    <li>Error 404 (HTML)</li>
-    This was fixed by amending the relative filepaths in the html code pages.
-    <li>Duplicate IDs (HTML)</li>
-    This was fixed by removing the duplicate from the HEAD.
-    <li>No Section Heading (HTML)</li>
-    This was evident on the background images of all 3 pages.  It was fixed by adding a heading to each page's section and using the invisibility styling in CSS to hide it.
-    <li>No P Element In Scope (HTML)</li>
-    The /P tag was incorrectly placed in the section and repositioned to it's correct location.
-    <li>Element without attribute must not be empty (HTML)</li>
-    Label was added to the form and option with value "" had text of Choose From The Following: added to it.
-    <li>Value Error: min-height (CSS)</li>
-    The min-height element of the text boxes was not initially set and left blank in error.  This was fixed by giving them all a value of 150px.
-    <li>.text-input Styling (CSS)</li>
-    The background and border colours were initially set to whitesmoke.  As this clashed, the border was updated to gray in keeping with other border styles.
+    <li>Missing semicolons (JS)</li>
+    This was fixed by including semicolons to the end of the JS code.
+    <li>Stray Start Tag (HTML)</li>
+    This was fixed by removing the header.
+    <li>Users able to buy stocks even when cash was depleted(JS)</li>
+    This was fixed by including the resetBuySection() to "function adjustPortfolio(stock)" & "function updateCashUI(stock)" code.
 </ul>
 
 
 ## Known Bugs
+Bugs that remain due to time contraints are as follows:
+<ul>
+    <li>Selling lots with both gains and losses included (JS)</li>
+    The sum of the Gain/Loss should be colour coded by green (Profit) or red (Loss).
+    If the last lot selected in a group for sale is red, but the proceeds indicate a profit, this will show red and vice versa:
+</ul>
+
+![P&L Colour](assets/README/Known%20Bug%20Colour.jpg)
+
+<ul>
+    <li>Selecting a stock for sale, deselecting it, then reselecting it for sale (JS)</li>
+    The profit/loss is calculated upon selection of a stock for sale from the portfolio.  If this is deselected, the profit/loss remains.  If the stock is reselected, the profit/loss figure is added to each time.  This, however, does not actually affect the cash proceeds in the game.  Once the stock is sold, the correct monetary value of that stock, inclusive of actual P&L, is added back to cash on hand. 
+</ul>
+
+### Upon selection - Works correctly:
+![Selection of Stock For Sale - Before](assets/README/Selection%20Before.jpg)
+
+### Upon deselection & subsequent reselection - Adds to the prior selected balance:
+![Selection of Stock For Sale - Before](assets/README/Selection%20Before.jpg)
 
 ## Deployment
 The site was deployed through GitHub.  The steps taken were:
@@ -168,17 +169,17 @@ The site was deployed through GitHub.  The steps taken were:
 
 [W3 Schools - General Queries](https://www.w3schools.com/)
 
-[Free Code Camp - General Queries](https://www.freecodecamp.org/)
+[MDN Web Docs - General Queries](https://developer.mozilla.org/en-US/)
 
 ### The following websites were used visual purposes:
-
-[Font Awesome - Header Tags](https://fontawesome.com/)
 
 [Google Fonts](https://fonts.google.com/)
 
 [Favicon - Head Icon](https://favicon.io/emoji-favicons/drum/)
 
-[Pexels - Background Images](https://www.pexels.com/search/drumming/)
+### The following projects were referenced in relation to HTML, CSS & JavaScript:
 
-### The following projects were used as a reference guide to build this website:
+[Love Running Essentials Project](https://github.com/Code-Institute-Solutions/love-running-v3/tree/main/)
+
+[Love Maths Essentials Project](https://github.com/Code-Institute-Solutions/love-maths-2.0-sourcecode/tree/master/)
 
