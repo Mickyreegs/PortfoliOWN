@@ -216,7 +216,7 @@ function resetBuySection() {
     const priceElement = document.getElementById("price");
     priceElement.innerText = "0.00";
     const quantityElement = document.getElementById("quantity");
-    parseInt(quantityElement.innerText = 1);
+    quantityElement.innerText = 1;
     const costElement = document.getElementById("total-cost");
     costElement.innerText = "0.00";
     const potentialAdjustedCashElement = document.getElementById("potential-adjusted-cash");

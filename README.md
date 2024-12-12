@@ -7,7 +7,8 @@ This document aims to explain the who, what, why, and how of this website.
 
 ## PortfoliOWN
 
-
+PortfoliOWN is a stock simulator designed to be an intuitive and fun way of learning about buying, selling and realising profits/losses in investments.
+As a user, I want to simulate stock sortfolio construction so that I can see how daily changes affect my stocks, cash and profits (realised and unrealised). I have a full description of the game layout and operation. I can buy and sell stocks in a simulated portfolio. I can make decisions on when to buy/sell a stock based on market prices and profit/loss.
 
 ## Initial Design - Wireframe
 
