@@ -17,21 +17,36 @@ The original idea was to have 4 boxes, 2 up/2 down, and fill those with sections
 
 ## General Features
 
+![Image of the finished PortfoliOWN webpage and layout](assets/README/Full%20Screen.JPG)
+
 ### Responsive Design
 The website was designed to ensure that the user can enjoy playing this game on all screen sizes.
 
 ![AmIResponsive website image of PortfoliOWN responsiveness](assets/README/AmIResponsive.JPG)
 
+### Simulated Stock Prices
+PortfoliOWN randomises the daily stock prices using a range of +/-2% day-on-day. 
+
+### Daily Valuations
+The stocks in your portfolio are valued each day, the same as in real life.  This gives the user an idea of the unrealised gains/losses on their stock selections.
+
+### Links to External Websites
+There are links to Yahoo and Bloomberg for stock quotes and also to Investopedia to learn about investments and the stock market.
+
 
 ## Testing
 ### Code Validation
-All 3 pages were put through the HTML validator tool and passed:
+All 3 files were put through their respective validator tools:
 
-![HTML validator checks](readme-images/HTML%20Check%20After.JPG)
+#### HTML - No errors or warnings
+![HTML Validator Checks](assets/README/HTML%20Checker.JPG)
 
-The CSS cose also passed the CSS validator test.  There was one warning - "Imported style sheets are not checked in direct input and file upload modes".  This was my import from Google Fonts and is an expected warning:
+#### CSS - No errors, 1 warning
+There was one warning - "Imported style sheets are not checked in direct input and file upload modes".  This was my import from Google Fonts and is an expected warning.
+![CSS Validator Checks](assets/README/CSS%20Checker.JPG)
 
-![CSS validator checks](readme-images/CSS%20code%20validation%20-%20After.JPG)
+#### JSHint
+
 
 ### Functional Testing
 <table>
