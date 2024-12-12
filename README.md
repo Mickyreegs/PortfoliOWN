@@ -148,7 +148,7 @@ Bugs that remain due to time contraints are as follows:
 
 <ul>
     <li>Selecting a stock for sale, deselecting it, then reselecting it for sale (JS)</li>
-    The profit/loss is calculated upon selection of a stock for sale from the portfolio.  If this is deselected, the profit/loss remains.  If the stock is reselected, the profit/loss figure is added to each time.  This, however, does not actually affect the cash proceeds in the game.  Once the stock is sold, the correct monetary value of that stock, inclusive of actual P&L, is added back to cash on hand. 
+    The profit/loss is calculated upon selection of a stock for sale from the portfolio.  Originally, if this was deselected, the profit/loss remained.  If the stock was  reselected, the profit/loss figure increased to each time.  This was fixed by adding an "else if" to the if statements of currentCheckbox.checked.  The only issue now is that if you select more than 1 row, and only deselect 1, the proceeds and profit reset to 0 even if there are still stocks selected.  This, however, does not actually affect the cash proceeds in the game.  Once the stock is sold, the correct monetary value of that stock, inclusive of actual P&L, is added back to cash on hand. 
 </ul>
 
 ### Upon selection - Works correctly:
