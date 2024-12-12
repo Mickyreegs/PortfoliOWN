@@ -72,12 +72,12 @@ function initValues() {
     cashOnHand = initialCashOnHand;
     stocks = initialStocks.map(function (stock) {
         return {
-          name: stock.name,
-          ticker: stock.ticker,
-          price: stock.price,
+            name: stock.name,
+            ticker: stock.ticker,
+            price: stock.price,
         };
-      });
-    }
+    });
+}
 
 initValues();
 
@@ -272,16 +272,18 @@ function calculateCost(quantity, stock) {
 function calculateProceeds() {
     resetBuySection();
     for (const ticker in myHoldings) {
-        const holdingArray = myHoldings[ticker];
-        for (const holding of holdingArray) {
-            const checkbox = document.getElementById(holding.uniqueId);
-            if (checkbox.checked) {
-                const currentPrice = stocks.find(
-                    (stock) => stock.ticker === ticker
-                ).price;
-                const moneyReceived = holding.quantity * currentPrice;
-                cashOnHand += parseFloat(moneyReceived);
-                holdingArray.splice(holdingArray.indexOf(holding), 1);
+        if (myHoldings.hasOwnProperty(ticker)) {
+            const holdingArray = myHoldings[ticker];
+            for (const holding of holdingArray) {
+                const checkbox = document.getElementById(holding.uniqueId);
+                if (checkbox.checked) {
+                    const currentPrice = stocks.find(
+                        (stock) => stock.ticker === ticker
+                    ).price;
+                    const moneyReceived = holding.quantity * currentPrice;
+                    cashOnHand += parseFloat(moneyReceived);
+                    holdingArray.splice(holdingArray.indexOf(holding), 1);
+                }
             }
         }
     }
@@ -310,11 +312,11 @@ function adjustPortfolio(stock) {
         boughtOn: boughtOn,
         uniqueId: Math.random().toString(36),
     });
-    
+
     cashOnHand -= calculateCost(quantity, stock);
 
     resetBuySection();
-    
+
 }
 
 /**
@@ -396,16 +398,18 @@ function handleCheckboxChange(holdingCombinationId) {
 
     let atLeastOneChecked = false;
     for (const ticker in myHoldings) {
-        const holdingArray = myHoldings[ticker];
-        for (const holding of holdingArray) {
-            const checkbox = document.getElementById(holding.uniqueId);
-            if (checkbox.checked) {
-                atLeastOneChecked = true;
+        if (myHoldings.hasOwnProperty(ticker)) {
+            const holdingArray = myHoldings[ticker];
+            for (const holding of holdingArray) {
+                const checkbox = document.getElementById(holding.uniqueId);
+                if (checkbox.checked) {
+                    atLeastOneChecked = true;
+                    break;
+                }
+            }
+            if (atLeastOneChecked) {
                 break;
             }
-        }
-        if (atLeastOneChecked) {
-            break;
         }
     }
 
