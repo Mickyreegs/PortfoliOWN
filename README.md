@@ -131,6 +131,8 @@ Bugs that were discovered and fixed are as follows:
     This was fixed by removing the header.
     <li>Users able to buy stocks even when cash was depleted(JS)</li>
     This was fixed by including the resetBuySection() to "function adjustPortfolio(stock)" & "function updateCashUI(stock)" code.
+    <li>JSHint - "The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype."</li>
+    This was fixed by adding if statements where necessary to the For...In
 </ul>
 
 
