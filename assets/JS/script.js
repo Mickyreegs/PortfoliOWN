@@ -367,8 +367,8 @@ function updateMyHoldingsUI() {
                     </tr>
                 `;
             });
-        
-        html += rows.join("");
+
+            html += rows.join("");
         }
     }
 
