@@ -92,6 +92,13 @@ th, tr, td{
     text-align: left;
 }
 
+button{
+    border-radius: 5px;
+    background-color: blue;
+    color: whitesmoke;
+    border: black 2px solid;
+}
+
 /* Media query - Tablets and above (768px) */
 @media screen and (min-width: 768px) {
     #stock-options{
@@ -155,6 +162,11 @@ th, tr, td{
         flex-wrap: wrap;
         order: 4;
         width: 50%;
+    }
+
+    button:hover{
+        background-color: whitesmoke;
+        color: blue;
     }
 }
 
