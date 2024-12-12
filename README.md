@@ -103,7 +103,7 @@ There was one warning - "Imported style sheets are not checked in direct input a
 </table>
 
 ### Browser Performance
-the game performed well on the below browsers:
+The game performed well on the below browsers:
 <ul>
     <li>Google Chrome</li>
     <li>Microsoft Edge</li>
@@ -151,7 +151,7 @@ Bugs that remain due to time contraints are as follows:
 ![Selection of Stock For Sale - Before](assets/README/Selection%20Before.jpg)
 
 ### Upon deselection & subsequent reselection - Adds to the prior selected balance:
-![Selection of Stock For Sale - Before](assets/README/Selection%20Before.jpg)
+![Selection of Stock For Sale - After](assets/README/Selection%20After.jpg)
 
 ## Deployment
 The site was deployed through GitHub.  The steps taken were:
@@ -182,4 +182,6 @@ The site was deployed through GitHub.  The steps taken were:
 [Love Running Essentials Project](https://github.com/Code-Institute-Solutions/love-running-v3/tree/main/)
 
 [Love Maths Essentials Project](https://github.com/Code-Institute-Solutions/love-maths-2.0-sourcecode/tree/master/)
+
+[CPS - Project 1](https://github.com/Mickyreegs/CPS)
 
