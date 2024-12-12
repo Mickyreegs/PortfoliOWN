@@ -11,15 +11,16 @@ PortfoliOWN is a stock simulator designed to be an intuitive and fun way of lear
 As a user, I want to simulate stock sortfolio construction so that I can see how daily changes affect my stocks, cash and profits (realised and unrealised). I have a full description of the game layout and operation. I can buy and sell stocks in a simulated portfolio. I can make decisions on when to buy/sell a stock based on market prices and profit/loss.
 
 ## Initial Design - Wireframe
+The original idea was to have 4 boxes, 2 up/2 down, and fill those with sections with "How to Play" - Box 1, "Stock Selection" (10 stocks) - Box 2, "Build your Portfolio" - Box 3 & "Portfolio Valuation" - Box 4.  The data in each of box 2, 3, & 4 will be used together to build a portfolio and reflect the cost, unrealised gain/loss, and profit.
 
-
-### Wireframe of the index.html page
-
+![Wireframe image of the PortfoliOWN webpage and layout](assets/README/WireFrame.JPG)
 
 ## General Features
 
 ### Responsive Design
-The website was designed using the Mobile First principle and enlarges based on screen size.
+The website was designed to ensure that the user can enjoy playing this game on all screen sizes.
+
+![AmIResponsive website image of PortfoliOWN responsiveness](assets/README/AmIResponsive.JPG)
 
 
 ## Testing
