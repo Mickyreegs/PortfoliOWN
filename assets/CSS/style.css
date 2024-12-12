@@ -71,6 +71,27 @@ header{
     height: 50vh;
 }
 
+table{
+    border-collapse: collapse;
+}
+
+th{
+    background-color: lightblue;
+}
+
+tr:nth-child(even) {
+    background-color: lightgrey
+}
+
+tr:nth-child(odd) {
+    background-color: whitesmoke
+}
+
+th, tr, td{
+    padding-left: 10px;
+    text-align: left;
+}
+
 /* Media query - Tablets and above (768px) */
 @media screen and (min-width: 768px) {
     #stock-options{
