@@ -10,7 +10,7 @@ This document aims to explain the who, what, why, and how of the PortfoliOWN web
 ## PortfoliOWN
 
 PortfoliOWN is a stock simulator designed to be an intuitive and fun way of learning about buying, selling and realising profits/losses in investments.
-As a user, I want to simulate stock sortfolio construction so that I can see how daily changes affect my stocks, cash and profits (realised and unrealised). I have a full description of the game layout and operation. I can buy and sell stocks in a simulated portfolio. I can make decisions on when to buy/sell a stock based on market prices and profit/loss.
+As a user, I want to simulate stock portfolio construction so that I can see how daily changes affect my stocks, cash, and profits (realised and unrealised). I have a full description of the game layout and operation. I can buy and sell stocks in a simulated portfolio. I can make decisions on when to buy/sell a stock based on market prices and profit/loss.
 
 ## Initial Design - Wireframe
 The original idea was to have 4 boxes, 2 up/2 down, and fill those with sections with "How to Play" - Box 1, "Stock Selection" (10 stocks) - Box 2, "Build your Portfolio" - Box 3 & "Portfolio Valuation" - Box 4.  The data in each of box 2, 3, & 4 will be used together to build a portfolio and reflect the cost, unrealised gain/loss, and profit.
@@ -51,6 +51,7 @@ There was one warning - "Imported style sheets are not checked in direct input a
 
 #### JSHint
 There were 2 warnings related to functions in loops but these were highlighted by Code Institute as a non-error during the course.  Due to time constraints, these were left as is.
+<br>
 There was 1 unused variable in the JS code related to the handleCheckBoxChange.  This is being called during the creation of the HMTL checkbox in UpdateMyHoldingsUI.
 
 ![JSHint Validator Checks](assets/README/JSHint%20After%20Update.jpg)
@@ -89,7 +90,7 @@ There was 1 unused variable in the JS code related to the handleCheckBoxChange. 
     </tr>
     <tr>
         <td>Stock Dropdown</td>
-        <td>All stocks have been pushed to the dropdown list from JS</td>
+        <td>All stocks have been pushed to the dropdown select list from JS</td>
         <td>Pass</td>
     </tr>
     <tr>
@@ -153,7 +154,7 @@ Bugs that remain due to time contraints are as follows:
 
 <ul>
     <li>Selecting a stock for sale, deselecting it, then reselecting it for sale (JS)</li>
-    The profit/loss is calculated upon selection of a stock for sale from the portfolio.  Originally, if this was deselected, the profit/loss remained.  If the stock was  reselected, the profit/loss figure increased to each time.  This was fixed by adding an "else if" to the if statements of currentCheckbox.checked.  The only issue now is that if you select more than 1 row, and only deselect 1, the proceeds and profit reset to 0 even if there are still stocks selected.  This, however, does not actually affect the cash proceeds in the game.  Once the stock is sold, the correct monetary value of that stock, inclusive of actual P&L, is added back to cash on hand. 
+    The profit/loss is calculated upon selection of a stock for sale from the portfolio.  Originally, if this was deselected, the profit/loss remained.  If the stock was  reselected, the profit/loss figure increased each time.  This was fixed by adding an "else if" to the if statements of currentCheckbox.checked.  The only issue now is that if you select more than 1 row, and only deselect 1, the proceeds and profit reset to 0 even if there are still stocks selected.  This, however, does not actually affect the cash proceeds in the game.  Once the stock is sold, the correct monetary value of that stock, inclusive of actual P&L, is added back to cash on hand. 
 </ul>
 
 ### Upon selection - Works correctly:
@@ -179,6 +180,8 @@ The site was deployed through GitHub.  The steps taken were:
 [W3 Schools - General Queries](https://www.w3schools.com/)
 
 [MDN Web Docs - General Queries](https://developer.mozilla.org/en-US/)
+
+Code Institute - JavaScript Essentials Module
 
 ### The following websites were used visual purposes:
 
