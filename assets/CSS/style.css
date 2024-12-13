@@ -140,6 +140,7 @@ button{
     }
     
     #stock-options{
+        margin-top: 67px;
         font-size: large;
         width: 50%;
     }
