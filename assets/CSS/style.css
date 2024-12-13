@@ -39,6 +39,7 @@ header{
 }
 
 #stock-options{
+    margin-top: 67px;
     padding: 10px;
     background: silver;
     border: 2px solid black;
@@ -101,66 +102,56 @@ button{
 
 /* Media query - Tablets and above (768px) */
 @media screen and (min-width: 768px) {
-    #stock-options{
-        margin-top: 67px;
+    #how-to-play{
         font-size: medium;
-        flex-wrap: wrap;
-        order: 2;
         width: 50%;
+    }
+    
+    #stock-options{
+        font-size: medium;
+        width: 50%;
+    }
+
+    #stock-options td{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #stock-options th{
+        padding-left: 20px;
+        padding-right: 20px;
     }
     
     #portfolio{
         font-size: medium;
-        flex-wrap: wrap;
-        order: 3;
         width: 50%;
     }
     
     #daily-valuation{
         font-size: medium;
-        flex-wrap: wrap;
-        order: 4;
         width: 50%;
-    }
-    
-    #how-to-play{
-        margin-top: 67px;
-        font-size: medium;
-        flex-wrap: wrap;
-        order: 1;
-        width: 50%;
-    }
+    }       
 }
 
 /* Media query - Small laptops and above (1020px) */
 @media screen and (min-width: 1020px) {
     #how-to-play{
-        margin-top: 67px;
         font-size: large;
-        flex-wrap: wrap;
-        order: 1;
         width: 50%;
     }
     
     #stock-options{
-        margin-top: 67px;
         font-size: large;
-        flex-wrap: wrap;
-        order: 2;
         width: 50%;
     }
     
     #portfolio{
         font-size: large;
-        flex-wrap: wrap;
-        order: 3;
         width: 50%;
     }
     
     #daily-valuation{
         font-size: large;
-        flex-wrap: wrap;
-        order: 4;
         width: 50%;
     }
 
@@ -172,5 +163,24 @@ button{
 
 /* Media query - Small laptops and above (1027px) */
 @media screen and (min-width: 1027px) {
+    #stock-options td{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    #stock-options th{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    #my-holdings td{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    #my-holdings th{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
 
 }
