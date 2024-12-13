@@ -41,14 +41,19 @@ There are links to Yahoo and Bloomberg for stock quotes and also to Investopedia
 All 3 files were put through their respective validator tools:
 
 #### HTML - No errors or warnings
+
 ![HTML Validator Checks](assets/README/HTML%20Checker.JPG)
 
 #### CSS - No errors, 1 warning
 There was one warning - "Imported style sheets are not checked in direct input and file upload modes".  This was my import from Google Fonts and is an expected warning.
+
 ![CSS Validator Checks](assets/README/CSS%20Checker.JPG)
 
 #### JSHint
+There were 2 warnings related to functions in loops but these were highlighted by Code Institute as a non-error during the course.  Due to time constraints, these were left as is.
+There was 1 unused variable in the JS code related to the handleCheckBoxChange.  This is being called during the creation of the HMTL checkbox in UpdateMyHoldingsUI.
 
+![JSHint Validator Checks](assets/README/JSHint%20After%20Update.jpg)
 
 ### Functional Testing
 <table>
